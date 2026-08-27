@@ -21,6 +21,10 @@ import { Route as InfrastructureIndexRouteImport } from './routes/infrastructure
 import { Route as NewsIndexRouteImport } from './routes/news/index'
 import { Route as NoticeBoardIndexRouteImport } from './routes/notice-board/index'
 import { Route as PortalIndexRouteImport } from './routes/portal/index'
+import { Route as SchoolInfoIndexRouteImport } from './routes/school-info/index'
+import { Route as SchoolInfoCircularsRouteImport } from './routes/school-info/circulars'
+import { Route as SchoolInfoFeeStructureRouteImport } from './routes/school-info/fee-structure'
+import { Route as SchoolInfoMandatoryDisclosureRouteImport } from './routes/school-info/mandatory-disclosure'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,12 +86,36 @@ const PortalIndexRoute = PortalIndexRouteImport.update({
   path: '/portal/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SchoolInfoIndexRoute = SchoolInfoIndexRouteImport.update({
+  id: '/school-info/',
+  path: '/school-info/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SchoolInfoCircularsRoute = SchoolInfoCircularsRouteImport.update({
+  id: '/school-info/circulars',
+  path: '/school-info/circulars',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SchoolInfoFeeStructureRoute = SchoolInfoFeeStructureRouteImport.update({
+  id: '/school-info/fee-structure',
+  path: '/school-info/fee-structure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SchoolInfoMandatoryDisclosureRoute =
+  SchoolInfoMandatoryDisclosureRouteImport.update({
+    id: '/school-info/mandatory-disclosure',
+    path: '/school-info/mandatory-disclosure',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about/policies': typeof AboutPoliciesRoute
   '/academics/faculty': typeof AcademicsFacultyRoute
   '/admissions/form': typeof AdmissionsFormRoute
+  '/school-info/circulars': typeof SchoolInfoCircularsRoute
+  '/school-info/fee-structure': typeof SchoolInfoFeeStructureRoute
+  '/school-info/mandatory-disclosure': typeof SchoolInfoMandatoryDisclosureRoute
   '/about/': typeof AboutIndexRoute
   '/admissions/': typeof AdmissionsIndexRoute
   '/contact/': typeof ContactIndexRoute
@@ -96,12 +124,16 @@ export interface FileRoutesByFullPath {
   '/news/': typeof NewsIndexRoute
   '/notice-board/': typeof NoticeBoardIndexRoute
   '/portal/': typeof PortalIndexRoute
+  '/school-info/': typeof SchoolInfoIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about/policies': typeof AboutPoliciesRoute
   '/academics/faculty': typeof AcademicsFacultyRoute
   '/admissions/form': typeof AdmissionsFormRoute
+  '/school-info/circulars': typeof SchoolInfoCircularsRoute
+  '/school-info/fee-structure': typeof SchoolInfoFeeStructureRoute
+  '/school-info/mandatory-disclosure': typeof SchoolInfoMandatoryDisclosureRoute
   '/about': typeof AboutIndexRoute
   '/admissions': typeof AdmissionsIndexRoute
   '/contact': typeof ContactIndexRoute
@@ -110,6 +142,7 @@ export interface FileRoutesByTo {
   '/news': typeof NewsIndexRoute
   '/notice-board': typeof NoticeBoardIndexRoute
   '/portal': typeof PortalIndexRoute
+  '/school-info': typeof SchoolInfoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -117,6 +150,9 @@ export interface FileRoutesById {
   '/about/policies': typeof AboutPoliciesRoute
   '/academics/faculty': typeof AcademicsFacultyRoute
   '/admissions/form': typeof AdmissionsFormRoute
+  '/school-info/circulars': typeof SchoolInfoCircularsRoute
+  '/school-info/fee-structure': typeof SchoolInfoFeeStructureRoute
+  '/school-info/mandatory-disclosure': typeof SchoolInfoMandatoryDisclosureRoute
   '/about/': typeof AboutIndexRoute
   '/admissions/': typeof AdmissionsIndexRoute
   '/contact/': typeof ContactIndexRoute
@@ -125,6 +161,7 @@ export interface FileRoutesById {
   '/news/': typeof NewsIndexRoute
   '/notice-board/': typeof NoticeBoardIndexRoute
   '/portal/': typeof PortalIndexRoute
+  '/school-info/': typeof SchoolInfoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -133,6 +170,9 @@ export interface FileRouteTypes {
     | '/about/policies'
     | '/academics/faculty'
     | '/admissions/form'
+    | '/school-info/circulars'
+    | '/school-info/fee-structure'
+    | '/school-info/mandatory-disclosure'
     | '/about/'
     | '/admissions/'
     | '/contact/'
@@ -141,12 +181,16 @@ export interface FileRouteTypes {
     | '/news/'
     | '/notice-board/'
     | '/portal/'
+    | '/school-info/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about/policies'
     | '/academics/faculty'
     | '/admissions/form'
+    | '/school-info/circulars'
+    | '/school-info/fee-structure'
+    | '/school-info/mandatory-disclosure'
     | '/about'
     | '/admissions'
     | '/contact'
@@ -155,12 +199,16 @@ export interface FileRouteTypes {
     | '/news'
     | '/notice-board'
     | '/portal'
+    | '/school-info'
   id:
     | '__root__'
     | '/'
     | '/about/policies'
     | '/academics/faculty'
     | '/admissions/form'
+    | '/school-info/circulars'
+    | '/school-info/fee-structure'
+    | '/school-info/mandatory-disclosure'
     | '/about/'
     | '/admissions/'
     | '/contact/'
@@ -169,6 +217,7 @@ export interface FileRouteTypes {
     | '/news/'
     | '/notice-board/'
     | '/portal/'
+    | '/school-info/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -176,6 +225,9 @@ export interface RootRouteChildren {
   AboutPoliciesRoute: typeof AboutPoliciesRoute
   AcademicsFacultyRoute: typeof AcademicsFacultyRoute
   AdmissionsFormRoute: typeof AdmissionsFormRoute
+  SchoolInfoCircularsRoute: typeof SchoolInfoCircularsRoute
+  SchoolInfoFeeStructureRoute: typeof SchoolInfoFeeStructureRoute
+  SchoolInfoMandatoryDisclosureRoute: typeof SchoolInfoMandatoryDisclosureRoute
   AboutIndexRoute: typeof AboutIndexRoute
   AdmissionsIndexRoute: typeof AdmissionsIndexRoute
   ContactIndexRoute: typeof ContactIndexRoute
@@ -184,6 +236,7 @@ export interface RootRouteChildren {
   NewsIndexRoute: typeof NewsIndexRoute
   NoticeBoardIndexRoute: typeof NoticeBoardIndexRoute
   PortalIndexRoute: typeof PortalIndexRoute
+  SchoolInfoIndexRoute: typeof SchoolInfoIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -272,6 +325,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortalIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/school-info/': {
+      id: '/school-info/'
+      path: '/school-info'
+      fullPath: '/school-info/'
+      preLoaderRoute: typeof SchoolInfoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/school-info/circulars': {
+      id: '/school-info/circulars'
+      path: '/school-info/circulars'
+      fullPath: '/school-info/circulars'
+      preLoaderRoute: typeof SchoolInfoCircularsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/school-info/fee-structure': {
+      id: '/school-info/fee-structure'
+      path: '/school-info/fee-structure'
+      fullPath: '/school-info/fee-structure'
+      preLoaderRoute: typeof SchoolInfoFeeStructureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/school-info/mandatory-disclosure': {
+      id: '/school-info/mandatory-disclosure'
+      path: '/school-info/mandatory-disclosure'
+      fullPath: '/school-info/mandatory-disclosure'
+      preLoaderRoute: typeof SchoolInfoMandatoryDisclosureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -280,6 +361,9 @@ const rootRouteChildren: RootRouteChildren = {
   AboutPoliciesRoute: AboutPoliciesRoute,
   AcademicsFacultyRoute: AcademicsFacultyRoute,
   AdmissionsFormRoute: AdmissionsFormRoute,
+  SchoolInfoCircularsRoute: SchoolInfoCircularsRoute,
+  SchoolInfoFeeStructureRoute: SchoolInfoFeeStructureRoute,
+  SchoolInfoMandatoryDisclosureRoute: SchoolInfoMandatoryDisclosureRoute,
   AboutIndexRoute: AboutIndexRoute,
   AdmissionsIndexRoute: AdmissionsIndexRoute,
   ContactIndexRoute: ContactIndexRoute,
@@ -288,6 +372,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsIndexRoute: NewsIndexRoute,
   NoticeBoardIndexRoute: NoticeBoardIndexRoute,
   PortalIndexRoute: PortalIndexRoute,
+  SchoolInfoIndexRoute: SchoolInfoIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
