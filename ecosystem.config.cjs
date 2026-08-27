@@ -17,7 +17,7 @@ module.exports = {
         NODE_ENV: "production",
         // App listens here; nginx for the domain reverse-proxies to this.
         HOST: "127.0.0.1",
-        PORT: 4000,
+        PORT: 3080,
       },
     },
   ],

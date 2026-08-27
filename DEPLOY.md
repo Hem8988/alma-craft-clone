@@ -1,7 +1,7 @@
 # Deploy: gssssangla (VPS + pm2)
 
 App: TanStack Start (React SSR). Built with nitro's `node-server` preset, run with pm2,
-reverse-proxied by nginx. Runs on **127.0.0.1:4000**.
+reverse-proxied by nginx. Runs on **127.0.0.1:3080**.
 
 Server path used below: `/home/gssssangla/public_html`
 
@@ -49,8 +49,8 @@ Output lands in `.output/` — `.output/server/index.mjs` is the server,
 cd /home/gssssangla/public_html
 pm2 start ecosystem.config.cjs
 pm2 save                     # persist across reboots
-pm2 logs gssssangla          # verify it booted, listening on :4000
-curl -I http://127.0.0.1:4000
+pm2 logs gssssangla          # verify it booted, listening on :3080
+curl -I http://127.0.0.1:3080
 ```
 
 ---
@@ -61,7 +61,7 @@ Point the site's server block at the app (add inside the `server { ... }` for th
 
 ```nginx
 location / {
-    proxy_pass http://127.0.0.1:4000;
+    proxy_pass http://127.0.0.1:3080;
     proxy_http_version 1.1;
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
@@ -92,7 +92,7 @@ pm2 reload gssssangla
 
 ## Notes
 
-- Port 4000 is set in `ecosystem.config.cjs` (`env.PORT`). Change it there + in the
+- Port 3080 is set in `ecosystem.config.cjs` (`env.PORT`). Change it there + in the
   nginx `proxy_pass` if it clashes. Check used ports with `ss -tlnp`.
 - If `bun` is not wanted on the server, `npm install && NITRO_PRESET=node-server npm run build`
   also works (ignores `bun.lock`).
