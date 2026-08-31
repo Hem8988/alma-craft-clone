@@ -169,11 +169,9 @@ function Index() {
             Guided by Visionary Leadership
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {DIGNITARIES.map((d) => (
-              <div
-                key={d.name}
-                className="rounded-xl border border-border bg-card p-6 text-center shadow-soft transition-shadow hover:shadow-elevated"
-              >
+            {DIGNITARIES.map((d, i) => (
+              <Reveal key={d.name} delay={i * 100}>
+                <div className="hover-scale rounded-xl border border-border bg-card p-6 text-center shadow-soft hover:shadow-elevated">
                 <div className="relative mx-auto flex size-20 items-center justify-center rounded-full bg-navy font-display text-xl font-bold text-primary-foreground">
                   {d.initials}
                   <Award className="absolute -bottom-1 -right-1 size-6 rounded-full bg-saffron p-1 text-accent-foreground" />
