@@ -21,7 +21,9 @@ export const Route = createFileRoute("/infrastructure/")({
         property: "og:description",
         content: "Modern labs, library, smart classrooms and sports facilities in the Himalayas.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/infrastructure" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/infrastructure" }],
   }),
   component: Infrastructure,
 });

@@ -17,7 +17,9 @@ export const Route = createFileRoute("/admissions/form")({
         property: "og:description",
         content: "Apply online for admission to Govt. Sr. Sec. School Sangla.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/admissions/form" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/admissions/form" }],
   }),
   component: AdmissionForm,
 });

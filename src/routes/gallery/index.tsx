@@ -25,7 +25,9 @@ export const Route = createFileRoute("/gallery/")({
         property: "og:description",
         content: "A look at campus life, labs, events and activities at GSSS Sangla.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/gallery" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/gallery" }],
   }),
   component: Gallery,
 });

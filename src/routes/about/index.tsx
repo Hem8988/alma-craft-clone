@@ -17,7 +17,9 @@ export const Route = createFileRoute("/about/")({
         property: "og:description",
         content: "History, mission, vision and leadership of Govt. Sr. Sec. School Sangla.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/about" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/about" }],
   }),
   component: About,
 });

@@ -16,7 +16,9 @@ export const Route = createFileRoute("/notice-board/")({
         property: "og:description",
         content: "All official school notices and announcements in one place.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/notice-board" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/notice-board" }],
   }),
   component: NoticeBoard,
 });

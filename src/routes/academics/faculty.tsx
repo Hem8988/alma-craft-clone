@@ -16,7 +16,9 @@ export const Route = createFileRoute("/academics/faculty")({
         property: "og:description",
         content: "Qualified and dedicated teachers guiding students at GSSS Sangla.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/academics/faculty" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/academics/faculty" }],
   }),
   component: Faculty,
 });

@@ -17,7 +17,9 @@ export const Route = createFileRoute("/portal/")({
         property: "og:description",
         content: "Access results, attendance and circulars through the school portal.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/portal" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/portal" }],
   }),
   component: Portal,
 });
