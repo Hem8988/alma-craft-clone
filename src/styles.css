@@ -213,7 +213,7 @@
   height: 2px;
   bottom: -2px;
   left: 0;
-  background: hsl(var(--saffron, 35 90% 50%));
+  background: var(--saffron);
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s ease;
