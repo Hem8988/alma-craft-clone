@@ -10,6 +10,7 @@ import {
   Users,
 } from "lucide-react";
 import heroImage from "@/assets/campus-1.jpg";
+import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -119,11 +120,17 @@ function Index() {
         />
         <div className="absolute inset-0 -z-10 bg-navy-deep/75" />
         <div className="mx-auto flex min-h-[70vh] max-w-7xl flex-col justify-center px-4 py-24 text-primary-foreground">
-          <p className="section-label">Established in Kinnaur, Himachal Pradesh</p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold leading-tight sm:text-6xl">
+          <p className="section-label animate-fade-in">Established in Kinnaur, Himachal Pradesh</p>
+          <h1
+            className="animate-fade-in mt-4 max-w-3xl font-display text-4xl font-bold leading-tight sm:text-6xl"
+            style={{ animationDelay: "120ms" }}
+          >
             Government <span className="text-saffron">Sr. Sec.</span> School Sangla
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-primary-foreground/85">
+          <p
+            className="animate-fade-in mt-6 max-w-xl text-lg text-primary-foreground/85"
+            style={{ animationDelay: "240ms" }}
+          >
             Nurturing young minds in the heart of the Himalayas. Building tomorrow's leaders
             through quality education, discipline, and holistic development.
           </p>
