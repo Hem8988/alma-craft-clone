@@ -10,6 +10,7 @@ import {
   Users,
 } from "lucide-react";
 import heroImage from "@/assets/campus-1.jpg";
+import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -119,11 +120,17 @@ function Index() {
         />
         <div className="absolute inset-0 -z-10 bg-navy-deep/75" />
         <div className="mx-auto flex min-h-[70vh] max-w-7xl flex-col justify-center px-4 py-24 text-primary-foreground">
-          <p className="section-label">Established in Kinnaur, Himachal Pradesh</p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold leading-tight sm:text-6xl">
+          <p className="section-label animate-fade-in">Established in Kinnaur, Himachal Pradesh</p>
+          <h1
+            className="animate-fade-in mt-4 max-w-3xl font-display text-4xl font-bold leading-tight sm:text-6xl"
+            style={{ animationDelay: "120ms" }}
+          >
             Government <span className="text-saffron">Sr. Sec.</span> School Sangla
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-primary-foreground/85">
+          <p
+            className="animate-fade-in mt-6 max-w-xl text-lg text-primary-foreground/85"
+            style={{ animationDelay: "240ms" }}
+          >
             Nurturing young minds in the heart of the Himalayas. Building tomorrow's leaders
             through quality education, discipline, and holistic development.
           </p>
@@ -162,18 +169,17 @@ function Index() {
             Guided by Visionary Leadership
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {DIGNITARIES.map((d) => (
-              <div
-                key={d.name}
-                className="rounded-xl border border-border bg-card p-6 text-center shadow-soft transition-shadow hover:shadow-elevated"
-              >
+            {DIGNITARIES.map((d, i) => (
+              <Reveal key={d.name} delay={i * 100}>
+                <div className="hover-scale rounded-xl border border-border bg-card p-6 text-center shadow-soft hover:shadow-elevated">
                 <div className="relative mx-auto flex size-20 items-center justify-center rounded-full bg-navy font-display text-xl font-bold text-primary-foreground">
                   {d.initials}
                   <Award className="absolute -bottom-1 -right-1 size-6 rounded-full bg-saffron p-1 text-accent-foreground" />
                 </div>
                 <h3 className="mt-4 font-display text-lg font-bold">{d.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{d.role}</p>
-              </div>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -186,17 +192,16 @@ function Index() {
             Building a Strong Foundation
           </h2>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map((f) => (
-              <article
-                key={f.title}
-                className="rounded-xl border border-border bg-card p-6 shadow-soft transition-transform hover:-translate-y-1"
-              >
-                <div className="flex size-12 items-center justify-center rounded-lg bg-navy/10 text-navy">
-                  <f.icon className="size-6" />
-                </div>
-                <h3 className="mt-4 font-display text-xl font-bold">{f.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{f.text}</p>
-              </article>
+            {FEATURES.map((f, i) => (
+              <Reveal key={f.title} delay={i * 80}>
+                <article className="hover-scale h-full rounded-xl border border-border bg-card p-6 shadow-soft hover:shadow-elevated">
+                  <div className="flex size-12 items-center justify-center rounded-lg bg-navy/10 text-navy">
+                    <f.icon className="size-6" />
+                  </div>
+                  <h3 className="mt-4 font-display text-xl font-bold">{f.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{f.text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -219,20 +224,19 @@ function Index() {
             </Link>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {NEWS.map((n) => (
-              <article
-                key={n.title}
-                className="rounded-xl border border-border bg-card p-6 shadow-soft"
-              >
-                <div className="flex items-center gap-3 text-xs">
-                  <span className="text-muted-foreground">{n.date}</span>
-                  <span className="rounded-full bg-saffron/15 px-2 py-0.5 font-semibold text-saffron">
-                    {n.tag}
-                  </span>
-                </div>
-                <h3 className="mt-3 font-display text-lg font-bold">{n.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{n.text}</p>
-              </article>
+            {NEWS.map((n, i) => (
+              <Reveal key={n.title} delay={i * 100}>
+                <article className="hover-scale h-full rounded-xl border border-border bg-card p-6 shadow-soft hover:shadow-elevated">
+                  <div className="flex items-center gap-3 text-xs">
+                    <span className="text-muted-foreground">{n.date}</span>
+                    <span className="rounded-full bg-saffron/15 px-2 py-0.5 font-semibold text-saffron">
+                      {n.tag}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 font-display text-lg font-bold">{n.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{n.text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>

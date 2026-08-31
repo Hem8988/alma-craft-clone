@@ -92,7 +92,7 @@ export function Header() {
             <img
               src={logo}
               alt="Govt. Sr. Sec. School Sangla emblem"
-              className="size-12 rounded-full bg-background/10 object-contain"
+              className="animate-float-soft size-12 rounded-full bg-background/10 object-contain"
             />
             <span className="leading-tight">
               <span className="block font-display text-lg font-bold sm:text-xl">
@@ -109,7 +109,7 @@ export function Header() {
               <div key={item.label} className="group relative">
                 <Link
                   to={item.to}
-                  className="flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-background/10"
+                  className="story-link flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-background/10"
                   activeProps={{ className: "text-saffron-light" }}
                   activeOptions={{ exact: item.to === "/" }}
                 >
