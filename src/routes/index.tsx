@@ -25,7 +25,9 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Nurturing young minds in the heart of the Himalayas. Admissions open 2026-27.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/" }],
   }),
   component: Index,
 });

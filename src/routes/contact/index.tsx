@@ -18,7 +18,9 @@ export const Route = createFileRoute("/contact/")({
         property: "og:description",
         content: "Reach the school office — address, phone, email and office hours.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/contact" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/contact" }],
   }),
   component: Contact,
 });

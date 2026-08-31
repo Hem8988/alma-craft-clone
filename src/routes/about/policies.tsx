@@ -15,7 +15,9 @@ export const Route = createFileRoute("/about/policies")({
         property: "og:description",
         content: "Rules, code of conduct and safety policies followed at GSSS Sangla.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/about/policies" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/about/policies" }],
   }),
   component: Policies,
 });

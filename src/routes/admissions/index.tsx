@@ -16,7 +16,9 @@ export const Route = createFileRoute("/admissions/")({
         property: "og:description",
         content: "Step-by-step admission process, documents and key dates for the 2026-27 session.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/admissions" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/admissions" }],
   }),
   component: Admissions,
 });

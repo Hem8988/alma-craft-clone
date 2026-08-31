@@ -19,7 +19,9 @@ export const Route = createFileRoute("/news/")({
         property: "og:description",
         content: "Stay updated with the latest happenings at GSSS Sangla.",
       },
+      { property: "og:url", content: "https://alma-craft-clone.lovable.app/news" },
     ],
+    links: [{ rel: "canonical", href: "https://alma-craft-clone.lovable.app/news" }],
   }),
   component: News,
 });
