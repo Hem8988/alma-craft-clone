@@ -178,7 +178,8 @@ function Index() {
                 </div>
                 <h3 className="mt-4 font-display text-lg font-bold">{d.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{d.role}</p>
-              </div>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -191,17 +192,16 @@ function Index() {
             Building a Strong Foundation
           </h2>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map((f) => (
-              <article
-                key={f.title}
-                className="rounded-xl border border-border bg-card p-6 shadow-soft transition-transform hover:-translate-y-1"
-              >
-                <div className="flex size-12 items-center justify-center rounded-lg bg-navy/10 text-navy">
-                  <f.icon className="size-6" />
-                </div>
-                <h3 className="mt-4 font-display text-xl font-bold">{f.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{f.text}</p>
-              </article>
+            {FEATURES.map((f, i) => (
+              <Reveal key={f.title} delay={i * 80}>
+                <article className="hover-scale h-full rounded-xl border border-border bg-card p-6 shadow-soft hover:shadow-elevated">
+                  <div className="flex size-12 items-center justify-center rounded-lg bg-navy/10 text-navy">
+                    <f.icon className="size-6" />
+                  </div>
+                  <h3 className="mt-4 font-display text-xl font-bold">{f.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{f.text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -224,20 +224,19 @@ function Index() {
             </Link>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {NEWS.map((n) => (
-              <article
-                key={n.title}
-                className="rounded-xl border border-border bg-card p-6 shadow-soft"
-              >
-                <div className="flex items-center gap-3 text-xs">
-                  <span className="text-muted-foreground">{n.date}</span>
-                  <span className="rounded-full bg-saffron/15 px-2 py-0.5 font-semibold text-saffron">
-                    {n.tag}
-                  </span>
-                </div>
-                <h3 className="mt-3 font-display text-lg font-bold">{n.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{n.text}</p>
-              </article>
+            {NEWS.map((n, i) => (
+              <Reveal key={n.title} delay={i * 100}>
+                <article className="hover-scale h-full rounded-xl border border-border bg-card p-6 shadow-soft hover:shadow-elevated">
+                  <div className="flex items-center gap-3 text-xs">
+                    <span className="text-muted-foreground">{n.date}</span>
+                    <span className="rounded-full bg-saffron/15 px-2 py-0.5 font-semibold text-saffron">
+                      {n.tag}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 font-display text-lg font-bold">{n.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{n.text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
