@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { CalendarDays } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { Reveal } from "@/components/site/Reveal";
+import { supabase } from "@/integrations/supabase/client";
 import c6 from "@/assets/campus-6.jpg";
 import c5 from "@/assets/campus-5.jpg";
 import c3 from "@/assets/campus-3.jpg";
@@ -26,71 +29,92 @@ export const Route = createFileRoute("/news/")({
   component: News,
 });
 
-const FEATURED = [
-  {
-    img: c6,
-    date: "12 August 2026",
-    title: "Independence Day celebrated with cultural programme",
-    text: "Students presented patriotic songs, Kinnauri folk dance and a march past, followed by prize distribution for academic toppers.",
-  },
-  {
-    img: c5,
-    date: "28 July 2026",
-    title: "Annual Sports Meet concludes successfully",
-    text: "Three days of athletics, volleyball and kabaddi saw enthusiastic participation from all four houses of the school.",
-  },
-  {
-    img: c3,
-    date: "10 July 2026",
-    title: "Science exhibition showcases student innovation",
-    text: "Working models on renewable energy, water conservation and Himalayan biodiversity were displayed by senior classes.",
-  },
-];
+const IMAGES = [c6, c5, c3];
 
-const UPDATES = [
-  { date: "20 Aug 2026", title: "Parent-Teacher Meeting scheduled for 30 August 2026" },
-  { date: "05 Aug 2026", title: "Half-yearly examination datesheet released" },
-  { date: "22 Jul 2026", title: "Scholarship forms for SC/ST/OBC students invited" },
-  { date: "15 Jul 2026", title: "Inter-house debate competition winners announced" },
-  { date: "02 Jul 2026", title: "New books added to the school library" },
-];
+function formatDate(iso: string) {
+  return new Date(iso + "T00:00:00").toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
 
 function News() {
+  const { data: news = [], isLoading } = useQuery({
+    queryKey: ["public-news"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("news")
+        .select("id, title, excerpt, published_at")
+        .order("published_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const featured = news.slice(0, 3);
+  const updates = news.slice(3);
+
   return (
     <>
       <PageHero title="News & Events" subtitle="Announcements, achievements and celebrations from our campus." />
 
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4">
+          {isLoading && (
+            <p className="py-10 text-center text-sm text-muted-foreground">Loading news…</p>
+          )}
+          {!isLoading && news.length === 0 && (
+            <p className="py-10 text-center text-sm text-muted-foreground">
+              No news published yet. Please check back soon.
+            </p>
+          )}
+
           <div className="grid gap-6 md:grid-cols-3">
-            {FEATURED.map((n) => (
-              <article
-                key={n.title}
-                className="overflow-hidden rounded-xl border border-border bg-card shadow-soft"
-              >
-                <img src={n.img} alt={n.title} loading="lazy" className="h-48 w-full object-cover" />
-                <div className="p-5">
-                  <p className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <CalendarDays className="size-3.5 text-saffron" /> {n.date}
-                  </p>
-                  <h3 className="mt-2 font-display text-lg font-bold text-navy">{n.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{n.text}</p>
-                </div>
-              </article>
+            {featured.map((n, i) => (
+              <Reveal key={n.id} delay={i * 80} className="hover-scale">
+                <article className="h-full overflow-hidden rounded-xl border border-border bg-card shadow-soft">
+                  <img
+                    src={IMAGES[i % IMAGES.length]}
+                    alt={n.title}
+                    loading="lazy"
+                    className="h-48 w-full object-cover"
+                  />
+                  <div className="p-5">
+                    <p className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <CalendarDays className="size-3.5 text-saffron" /> {formatDate(n.published_at)}
+                    </p>
+                    <h3 className="mt-2 font-display text-lg font-bold text-navy">{n.title}</h3>
+                    {n.excerpt && (
+                      <p className="mt-2 text-sm text-muted-foreground">{n.excerpt}</p>
+                    )}
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
 
-          <h2 className="mt-16 font-display text-2xl font-bold text-navy">Latest Updates</h2>
-          <ul className="mt-5 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
-            {UPDATES.map((u) => (
-              <li key={u.title} className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-center sm:gap-4">
-                <span className="shrink-0 rounded bg-cream px-2 py-1 text-xs font-semibold text-navy">
-                  {u.date}
-                </span>
-                <span className="text-sm text-muted-foreground">{u.title}</span>
-              </li>
-            ))}
-          </ul>
+          {updates.length > 0 && (
+            <>
+              <h2 className="mt-16 font-display text-2xl font-bold text-navy">More Updates</h2>
+              <ul className="mt-5 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
+                {updates.map((u) => (
+                  <li
+                    key={u.id}
+                    className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-center sm:gap-4"
+                  >
+                    <span className="shrink-0 rounded bg-cream px-2 py-1 text-xs font-semibold text-navy">
+                      {formatDate(u.published_at)}
+                    </span>
+                    <span className="text-sm font-medium text-navy">{u.title}</span>
+                    {u.excerpt && (
+                      <span className="text-sm text-muted-foreground">— {u.excerpt}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </section>
     </>

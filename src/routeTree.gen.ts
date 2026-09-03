@@ -10,12 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as AboutPoliciesRouteImport } from './routes/about/policies'
 import { Route as AcademicsFacultyRouteImport } from './routes/academics/faculty'
 import { Route as AdmissionsIndexRouteImport } from './routes/admissions/index'
 import { Route as AdmissionsFormRouteImport } from './routes/admissions/form'
 import { Route as ContactIndexRouteImport } from './routes/contact/index'
+import { Route as EventsIndexRouteImport } from './routes/events/index'
 import { Route as GalleryIndexRouteImport } from './routes/gallery/index'
 import { Route as InfrastructureIndexRouteImport } from './routes/infrastructure/index'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
@@ -25,10 +27,15 @@ import { Route as SchoolInfoIndexRouteImport } from './routes/school-info/index'
 import { Route as SchoolInfoCircularsRouteImport } from './routes/school-info/circulars'
 import { Route as SchoolInfoFeeStructureRouteImport } from './routes/school-info/fee-structure'
 import { Route as SchoolInfoMandatoryDisclosureRouteImport } from './routes/school-info/mandatory-disclosure'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutIndexRoute = AboutIndexRouteImport.update({
@@ -59,6 +66,11 @@ const AdmissionsFormRoute = AdmissionsFormRouteImport.update({
 const ContactIndexRoute = ContactIndexRouteImport.update({
   id: '/contact/',
   path: '/contact/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsIndexRoute = EventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryIndexRoute = GalleryIndexRouteImport.update({
@@ -107,6 +119,11 @@ const SchoolInfoMandatoryDisclosureRoute =
     path: '/school-info/mandatory-disclosure',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -119,12 +136,14 @@ export interface FileRoutesByFullPath {
   '/about/': typeof AboutIndexRoute
   '/admissions/': typeof AdmissionsIndexRoute
   '/contact/': typeof ContactIndexRoute
+  '/events/': typeof EventsIndexRoute
   '/gallery/': typeof GalleryIndexRoute
   '/infrastructure/': typeof InfrastructureIndexRoute
   '/news/': typeof NewsIndexRoute
   '/notice-board/': typeof NoticeBoardIndexRoute
   '/portal/': typeof PortalIndexRoute
   '/school-info/': typeof SchoolInfoIndexRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -137,16 +156,19 @@ export interface FileRoutesByTo {
   '/about': typeof AboutIndexRoute
   '/admissions': typeof AdmissionsIndexRoute
   '/contact': typeof ContactIndexRoute
+  '/events': typeof EventsIndexRoute
   '/gallery': typeof GalleryIndexRoute
   '/infrastructure': typeof InfrastructureIndexRoute
   '/news': typeof NewsIndexRoute
   '/notice-board': typeof NoticeBoardIndexRoute
   '/portal': typeof PortalIndexRoute
   '/school-info': typeof SchoolInfoIndexRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about/policies': typeof AboutPoliciesRoute
   '/academics/faculty': typeof AcademicsFacultyRoute
   '/admissions/form': typeof AdmissionsFormRoute
@@ -156,12 +178,14 @@ export interface FileRoutesById {
   '/about/': typeof AboutIndexRoute
   '/admissions/': typeof AdmissionsIndexRoute
   '/contact/': typeof ContactIndexRoute
+  '/events/': typeof EventsIndexRoute
   '/gallery/': typeof GalleryIndexRoute
   '/infrastructure/': typeof InfrastructureIndexRoute
   '/news/': typeof NewsIndexRoute
   '/notice-board/': typeof NoticeBoardIndexRoute
   '/portal/': typeof PortalIndexRoute
   '/school-info/': typeof SchoolInfoIndexRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -176,12 +200,14 @@ export interface FileRouteTypes {
     | '/about/'
     | '/admissions/'
     | '/contact/'
+    | '/events/'
     | '/gallery/'
     | '/infrastructure/'
     | '/news/'
     | '/notice-board/'
     | '/portal/'
     | '/school-info/'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -194,15 +220,18 @@ export interface FileRouteTypes {
     | '/about'
     | '/admissions'
     | '/contact'
+    | '/events'
     | '/gallery'
     | '/infrastructure'
     | '/news'
     | '/notice-board'
     | '/portal'
     | '/school-info'
+    | '/admin'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/about/policies'
     | '/academics/faculty'
     | '/admissions/form'
@@ -212,16 +241,19 @@ export interface FileRouteTypes {
     | '/about/'
     | '/admissions/'
     | '/contact/'
+    | '/events/'
     | '/gallery/'
     | '/infrastructure/'
     | '/news/'
     | '/notice-board/'
     | '/portal/'
     | '/school-info/'
+    | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutPoliciesRoute: typeof AboutPoliciesRoute
   AcademicsFacultyRoute: typeof AcademicsFacultyRoute
   AdmissionsFormRoute: typeof AdmissionsFormRoute
@@ -231,6 +263,7 @@ export interface RootRouteChildren {
   AboutIndexRoute: typeof AboutIndexRoute
   AdmissionsIndexRoute: typeof AdmissionsIndexRoute
   ContactIndexRoute: typeof ContactIndexRoute
+  EventsIndexRoute: typeof EventsIndexRoute
   GalleryIndexRoute: typeof GalleryIndexRoute
   InfrastructureIndexRoute: typeof InfrastructureIndexRoute
   NewsIndexRoute: typeof NewsIndexRoute
@@ -246,6 +279,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about/': {
@@ -288,6 +328,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact/'
       preLoaderRoute: typeof ContactIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/': {
+      id: '/events/'
+      path: '/events'
+      fullPath: '/events/'
+      preLoaderRoute: typeof EventsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery/': {
@@ -353,11 +400,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SchoolInfoMandatoryDisclosureRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutPoliciesRoute: AboutPoliciesRoute,
   AcademicsFacultyRoute: AcademicsFacultyRoute,
   AdmissionsFormRoute: AdmissionsFormRoute,
@@ -367,6 +433,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutIndexRoute: AboutIndexRoute,
   AdmissionsIndexRoute: AdmissionsIndexRoute,
   ContactIndexRoute: ContactIndexRoute,
+  EventsIndexRoute: EventsIndexRoute,
   GalleryIndexRoute: GalleryIndexRoute,
   InfrastructureIndexRoute: InfrastructureIndexRoute,
   NewsIndexRoute: NewsIndexRoute,
