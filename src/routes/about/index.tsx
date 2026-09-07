@@ -124,8 +124,8 @@ function About() {
           </div>
 
           <div className="relative border-l-2 border-primary/20 ml-4 md:ml-32 space-y-10 pl-6 md:pl-10">
-            {milestones.map((m, i) => (
-              <Reveal key={m.year} delay={i * 80} variant="left">
+            {timeline.map((m, i) => (
+              <Reveal key={m.year + m.title} delay={i * 80} variant="left">
                 <div className="relative group">
                   <div className="absolute -left-[31px] md:-left-[47px] top-1 size-4 rounded-full bg-saffron ring-4 ring-background group-hover:scale-125 transition-transform" />
                   <span className="inline-block font-display font-bold text-sm text-saffron bg-saffron/10 px-2.5 py-0.5 rounded-full mb-1">
@@ -156,7 +156,7 @@ function About() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => {
-              const IconComp = v.icon;
+              const IconComp = VALUE_ICONS[i % VALUE_ICONS.length] || Sparkles;
               return (
                 <Reveal key={v.title} delay={i * 80} variant="zoom">
                   <div className="hover-lift h-full rounded-2xl border border-border bg-card p-6 shadow-soft hover:shadow-elevated transition-all">
