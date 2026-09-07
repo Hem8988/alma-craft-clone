@@ -110,7 +110,7 @@ function ContentManager({ kind }: { kind: ContentKey }) {
     setBusy(true);
     const { error } = await supabase.from(cfg.table).insert(payload);
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Published successfully.");
     form.reset();
     setAdding(false);
@@ -124,13 +124,13 @@ function ContentManager({ kind }: { kind: ContentKey }) {
       .from(cfg.table)
       .update({ is_published: !row.is_published })
       .eq("id", row.id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     queryClient.invalidateQueries({ queryKey: ["admin", kind] });
   }
 
   async function remove(id: string) {
     const { error } = await supabase.from(cfg.table).delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Deleted.");
     queryClient.invalidateQueries({ queryKey: ["admin", kind] });
   }
@@ -257,13 +257,13 @@ function Enquiries() {
 
   async function setStatus(id: string, status: string) {
     const { error } = await supabase.from("admission_enquiries").update({ status }).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     queryClient.invalidateQueries({ queryKey: ["admin", "enquiries"] });
   }
 
   async function remove(id: string) {
     const { error } = await supabase.from("admission_enquiries").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Deleted.");
     queryClient.invalidateQueries({ queryKey: ["admin", "enquiries"] });
   }
@@ -343,13 +343,13 @@ function Messages() {
 
   async function markRead(id: string, is_read: boolean) {
     const { error } = await supabase.from("contact_messages").update({ is_read }).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     queryClient.invalidateQueries({ queryKey: ["admin", "messages"] });
   }
 
   async function remove(id: string) {
     const { error } = await supabase.from("contact_messages").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Deleted.");
     queryClient.invalidateQueries({ queryKey: ["admin", "messages"] });
   }
