@@ -1,14 +1,14 @@
 -- ==============================================================================
 -- GSSS SANGLA - POSTGRESQL DATABASE SCHEMA (schema.sql)
--- Run this on your VPS: psql -U postgres -d gsss_db -f schema.sql
+-- Compatible with all PostgreSQL versions (Uses pgcrypto / gen_random_uuid)
 -- ==============================================================================
 
--- Enable UUID extension if not enabled
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- Try enabling pgcrypto for UUID support (or gen_random_uuid natively)
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 -- 1. ADMISSIONS TABLE
 CREATE TABLE IF NOT EXISTS admission_enquiries (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     student_name VARCHAR(255) NOT NULL,
     father_name VARCHAR(255) NOT NULL,
     mother_name VARCHAR(255) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS admission_enquiries (
 
 -- 2. CONTACT MESSAGES TABLE
 CREATE TABLE IF NOT EXISTS contact_messages (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     phone VARCHAR(50),
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS contact_messages (
 
 -- 3. NOTICES TABLE
 CREATE TABLE IF NOT EXISTS notices (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title VARCHAR(255) NOT NULL,
     description TEXT,
     category VARCHAR(100) DEFAULT 'General',
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS notices (
 
 -- 4. NEWS TABLE
 CREATE TABLE IF NOT EXISTS news (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title VARCHAR(255) NOT NULL,
     excerpt TEXT,
     published_at DATE DEFAULT CURRENT_DATE,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS news (
 
 -- 5. EVENTS TABLE
 CREATE TABLE IF NOT EXISTS events (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title VARCHAR(255) NOT NULL,
     description TEXT,
     event_date DATE NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS events (
 
 -- 6. STUDENTS & MARKSHEETS TABLE
 CREATE TABLE IF NOT EXISTS students (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     admission_no VARCHAR(100) UNIQUE NOT NULL,
     roll_no VARCHAR(50),
     name VARCHAR(255) NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS students (
 );
 
 CREATE TABLE IF NOT EXISTS marksheets (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     student_id UUID REFERENCES students(id) ON DELETE CASCADE,
     admission_no VARCHAR(100) NOT NULL,
     roll_no VARCHAR(50) NOT NULL,
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS marksheets (
 
 -- 7. ADMIN USERS TABLE
 CREATE TABLE IF NOT EXISTS admin_users (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     full_name VARCHAR(255) DEFAULT 'Principal GSSS Sangla',

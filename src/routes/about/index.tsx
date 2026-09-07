@@ -98,9 +98,9 @@ function About() {
                   className="w-full h-[420px] object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 rounded-2xl bg-navy p-5 text-primary-foreground shadow-elevated hidden sm:block max-w-xs border border-white/10">
-                <p className="font-display text-2xl font-bold text-saffron">{content.stat3Value || "CBSE"}</p>
-                <p className="text-xs text-primary-foreground/80 mt-1">
+              <div className="absolute -bottom-6 -left-6 rounded-2xl bg-white p-5 text-slate-800 shadow-elevated hidden sm:block max-w-xs border border-slate-200">
+                <p className="font-display text-2xl font-bold text-navy">{content.stat3Value || "CBSE"}</p>
+                <p className="text-xs text-slate-500 mt-1">
                   {content.affiliationCode || "Affiliated institution offering Science, Commerce & Humanities."}
                 </p>
               </div>
@@ -118,22 +118,21 @@ function About() {
             </Reveal>
             <Reveal variant="up" delay={50}>
               <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl text-navy">
-                Our Journey of Continuous Growth
+                Our Journey of Excellence
               </h2>
             </Reveal>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {timeline.map((t, idx) => (
-              <Reveal key={t.year + t.title} delay={idx * 80} variant="up">
-                <div className="h-full rounded-2xl border border-border bg-card p-6 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between">
-                  <div>
-                    <span className="inline-block rounded-full bg-saffron/15 text-saffron px-3 py-1 text-xs font-extrabold mb-3">
-                      {t.year}
-                    </span>
-                    <h3 className="font-display text-lg font-bold text-navy">{t.title}</h3>
-                    <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{t.desc}</p>
-                  </div>
+          <div className="relative border-l-2 border-primary/20 ml-4 md:ml-32 space-y-10 pl-6 md:pl-10">
+            {milestones.map((m, i) => (
+              <Reveal key={m.year} delay={i * 80} variant="left">
+                <div className="relative group">
+                  <div className="absolute -left-[31px] md:-left-[47px] top-1 size-4 rounded-full bg-saffron ring-4 ring-background group-hover:scale-125 transition-transform" />
+                  <span className="inline-block font-display font-bold text-sm text-saffron bg-saffron/10 px-2.5 py-0.5 rounded-full mb-1">
+                    {m.year}
+                  </span>
+                  <h3 className="font-display text-lg font-bold text-navy">{m.title}</h3>
+                  <p className="mt-1 text-xs text-muted-foreground leading-relaxed max-w-xl">{m.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -141,27 +140,27 @@ function About() {
         </div>
       </section>
 
-      {/* Core Institutional Values */}
+      {/* Core Values Bento */}
       <section className="py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <Reveal variant="down">
-              <span className="section-label">Core Philosophy</span>
+              <span className="section-label">Guiding Principles</span>
             </Reveal>
             <Reveal variant="up" delay={50}>
               <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl text-navy">
-                Pillars of {content.schoolShortName || "GSSS Sangla"} Education
+                Our Core Pillars
               </h2>
             </Reveal>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => {
-              const IconComp = VALUE_ICONS[i % VALUE_ICONS.length] || Sparkles;
+              const IconComp = v.icon;
               return (
                 <Reveal key={v.title} delay={i * 80} variant="zoom">
-                  <div className="hover-lift h-full rounded-2xl border border-border bg-card p-6 shadow-soft hover:shadow-elevated transition-all text-center flex flex-col items-center">
-                    <div className="mb-4 flex size-14 items-center justify-center rounded-2xl bg-navy/10 text-navy">
+                  <div className="hover-lift h-full rounded-2xl border border-border bg-card p-6 shadow-soft hover:shadow-elevated transition-all">
+                    <div className="mb-4 flex size-12 items-center justify-center rounded-xl bg-saffron/15">
                       <IconComp className="size-7 text-saffron" />
                     </div>
                     <h3 className="font-display text-lg font-bold text-navy">{v.title}</h3>
@@ -175,18 +174,18 @@ function About() {
           {/* Bottom CTA Card */}
           <div className="mt-14">
             <Reveal variant="up" delay={150}>
-              <div className="rounded-2xl bg-gradient-to-r from-navy-deep via-navy to-navy-deep p-8 text-primary-foreground text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 shadow-elevated">
+              <div className="rounded-3xl bg-gradient-to-r from-blue-50 via-indigo-50/70 to-amber-50/40 p-8 text-slate-800 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md border border-slate-200">
                 <div>
-                  <h3 className="font-display text-2xl font-bold text-white">
+                  <h3 className="font-display text-2xl font-bold text-navy">
                     Meet Our Dedicated Faculty
                   </h3>
-                  <p className="text-sm text-primary-foreground/80 mt-1 max-w-xl">
+                  <p className="text-sm text-slate-600 mt-1 max-w-xl">
                     Discover the qualified educators and subject specialists guiding your child's academic journey.
                   </p>
                 </div>
                 <Link
                   to="/academics/faculty"
-                  className="shimmer-btn rounded-xl bg-saffron px-6 py-3 text-xs font-bold text-accent-foreground shadow-gold hover:bg-saffron-light transition-all whitespace-nowrap"
+                  className="shimmer-btn rounded-xl bg-gradient-to-r from-saffron to-amber-500 px-6 py-3 text-xs font-black text-navy-deep shadow-gold hover:scale-105 transition-all whitespace-nowrap"
                 >
                   View Faculty Directory →
                 </Link>

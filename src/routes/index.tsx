@@ -307,20 +307,20 @@ function Index() {
           className="absolute inset-0 -z-20 size-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out"
         />
 
-        {/* Multi-layered Deep Navy & Gold Ambient Gradient Overlay */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep/98 via-navy-deep/90 to-navy-deep/80 backdrop-blur-[2px]" />
+        {/* Atmospheric Contrast Overlay */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950/80 via-slate-900/65 to-slate-900/40 backdrop-blur-[1px]" />
         
         {/* Subtle glowing ambient orbs */}
-        <div className="absolute top-1/4 left-10 -z-10 size-96 rounded-full bg-saffron/15 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 right-10 -z-10 size-[500px] rounded-full bg-primary/30 blur-3xl pointer-events-none" />
+        <div className="absolute top-1/4 left-10 -z-10 size-96 rounded-full bg-saffron/20 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-10 -z-10 size-[500px] rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
 
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:py-24 text-primary-foreground w-full">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:py-24 text-white w-full">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             {/* Left Content Column */}
             <div className="lg:col-span-7 space-y-6">
               {/* Trust Verification Pill */}
               <Reveal variant="down" delay={50}>
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-saffron-light backdrop-blur-md border border-white/15 shadow-sm">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-xs font-bold text-amber-300 backdrop-blur-md border border-white/25 shadow-sm">
                   <span className="relative flex size-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-saffron opacity-75" />
                     <span className="relative inline-flex size-2 rounded-full bg-saffron" />
@@ -335,7 +335,7 @@ function Index() {
               <Reveal variant="up" delay={100}>
                 <h1 className="font-display text-4xl font-extrabold leading-[1.12] sm:text-6xl lg:text-7xl text-white tracking-tight">
                   {content.heroTitle || "Nurturing Minds in the"}{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-saffron via-saffron-light to-amber-300 drop-shadow-sm">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-saffron to-amber-400 drop-shadow-sm">
                     {content.heroHighlight || "Heart of Sangla"}
                   </span>
                 </h1>
@@ -343,7 +343,7 @@ function Index() {
 
               {/* Subtitle */}
               <Reveal variant="up" delay={180}>
-                <p className="max-w-2xl text-base sm:text-lg text-primary-foreground/90 leading-relaxed font-normal">
+                <p className="max-w-2xl text-base sm:text-lg text-slate-100 leading-relaxed font-normal">
                   {content.heroSubtitle || "Government Senior Secondary School Sangla delivers quality CBSE education, state-of-the-art science laboratories, smart digital classrooms, and holistic character building in Kinnaur, Himachal Pradesh."}
                 </p>
               </Reveal>
@@ -362,7 +362,7 @@ function Index() {
 
                   <Link
                     to="/about"
-                    className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 hover:border-white/50 active:scale-95"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-white/15 px-6 py-3.5 text-sm font-bold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/25 hover:border-white/60 active:scale-95"
                   >
                     <span>Discover Our Campus</span>
                   </Link>
@@ -371,35 +371,35 @@ function Index() {
 
               {/* Feature Checklist Pills */}
               <Reveal variant="up" delay={300}>
-                <div className="flex flex-wrap items-center gap-y-2 gap-x-6 pt-4 text-xs text-primary-foreground/80">
+                <div className="flex flex-wrap items-center gap-y-2 gap-x-6 pt-4 text-xs text-slate-200">
                   <span className="flex items-center gap-1.5">
-                    <CheckCircle2 className="size-4 text-saffron" />
+                    <CheckCircle2 className="size-4 text-amber-400" />
                     100% Subsidized Govt. Fees
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <CheckCircle2 className="size-4 text-saffron" />
+                    <CheckCircle2 className="size-4 text-amber-400" />
                     4 Modern Science & IT Labs
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <CheckCircle2 className="size-4 text-saffron" />
+                    <CheckCircle2 className="size-4 text-amber-400" />
                     Science, Commerce & Arts
                   </span>
                 </div>
               </Reveal>
             </div>
 
-            {/* Right Quick Portal Cards (Interactive Glass Deck) */}
+            {/* Right Quick Portal Cards (Luminous Light Glass Deck) */}
             <div className="lg:col-span-5">
               <Reveal variant="left" delay={200}>
-                <div className="rounded-3xl border border-white/15 bg-navy-deep/80 backdrop-blur-2xl p-6 sm:p-7 shadow-2xl space-y-4">
-                  <div className="flex items-center justify-between border-b border-white/10 pb-3.5">
+                <div className="rounded-3xl border border-slate-200 bg-white/95 backdrop-blur-2xl p-6 sm:p-7 shadow-2xl text-slate-800 space-y-4">
+                  <div className="flex items-center justify-between border-b border-slate-200 pb-3.5">
                     <div>
-                      <span className="text-xs font-black uppercase tracking-widest text-saffron">
+                      <span className="text-xs font-black uppercase tracking-widest text-amber-700">
                         Quick Access Portal
                       </span>
-                      <p className="text-xs text-primary-foreground/70">Official School Resources & Downloads</p>
+                      <p className="text-xs text-slate-500">Official School Resources & Downloads</p>
                     </div>
-                    <span className="rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[0.65rem] font-extrabold px-2.5 py-0.5">
+                    <span className="rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 text-[0.65rem] font-bold px-2.5 py-0.5">
                       Session 2026-27
                     </span>
                   </div>
@@ -408,58 +408,58 @@ function Index() {
                     {/* Card 1: Online Admission */}
                     <Link
                       to="/admissions/form"
-                      className="group flex items-center justify-between rounded-xl bg-white/5 border border-white/10 p-3.5 hover:bg-white/10 hover:border-saffron/40 transition-all"
+                      className="group flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200 p-3.5 hover:bg-amber-50/70 hover:border-amber-300 transition-all"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="flex size-10 items-center justify-center rounded-lg bg-saffron/20 text-saffron group-hover:scale-110 transition-transform">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-amber-100 text-amber-700 group-hover:scale-110 transition-transform">
                           <Sparkles className="size-5" />
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-white group-hover:text-saffron transition-colors">
+                          <p className="text-xs font-bold text-slate-900 group-hover:text-navy transition-colors">
                             Online Admission Form
                           </p>
-                          <p className="text-[0.7rem] text-primary-foreground/60">Class 1 to 12 registration</p>
+                          <p className="text-[0.7rem] text-slate-500">Class 1 to 12 registration</p>
                         </div>
                       </div>
-                      <ArrowRight className="size-4 text-saffron transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="size-4 text-amber-600 transition-transform group-hover:translate-x-1" />
                     </Link>
 
                     {/* Card 2: Faculty Directory */}
                     <Link
                       to="/academics/faculty"
-                      className="group flex items-center justify-between rounded-xl bg-white/5 border border-white/10 p-3.5 hover:bg-white/10 hover:border-saffron/40 transition-all"
+                      className="group flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200 p-3.5 hover:bg-amber-50/70 hover:border-amber-300 transition-all"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="flex size-10 items-center justify-center rounded-lg bg-primary/40 text-saffron-light group-hover:scale-110 transition-transform">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-blue-100 text-navy group-hover:scale-110 transition-transform">
                           <GraduationCap className="size-5" />
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-white group-hover:text-saffron transition-colors">
+                          <p className="text-xs font-bold text-slate-900 group-hover:text-navy transition-colors">
                             Faculty Directory (28 Teachers)
                           </p>
-                          <p className="text-[0.7rem] text-primary-foreground/60">Subject experts & qualifications</p>
+                          <p className="text-[0.7rem] text-slate-500">Subject experts & qualifications</p>
                         </div>
                       </div>
-                      <ChevronRight className="size-4 text-primary-foreground/50 group-hover:text-saffron" />
+                      <ChevronRight className="size-4 text-slate-400 group-hover:text-navy" />
                     </Link>
 
                     {/* Card 3: CBSE Mandatory Disclosures */}
                     <Link
                       to="/school-info/mandatory-disclosure"
-                      className="group flex items-center justify-between rounded-xl bg-white/5 border border-white/10 p-3.5 hover:bg-white/10 hover:border-saffron/40 transition-all"
+                      className="group flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200 p-3.5 hover:bg-amber-50/70 hover:border-amber-300 transition-all"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="flex size-10 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-emerald-100 text-emerald-700 group-hover:scale-110 transition-transform">
                           <FileCheck className="size-5" />
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-white group-hover:text-saffron transition-colors">
+                          <p className="text-xs font-bold text-slate-900 group-hover:text-navy transition-colors">
                             CBSE Mandatory Public Disclosure
                           </p>
-                          <p className="text-[0.7rem] text-primary-foreground/60">12 Certified official documents</p>
+                          <p className="text-[0.7rem] text-slate-500">12 Certified official documents</p>
                         </div>
                       </div>
-                      <span className="rounded bg-saffron/20 border border-saffron/30 px-1.5 py-0.5 text-[9px] font-extrabold text-saffron uppercase">
+                      <span className="rounded bg-amber-100 border border-amber-300 px-1.5 py-0.5 text-[9px] font-extrabold text-amber-900 uppercase">
                         PDFs
                       </span>
                     </Link>
@@ -467,27 +467,27 @@ function Index() {
                     {/* Card 4: Fee Structure */}
                     <Link
                       to="/school-info/fee-structure"
-                      className="group flex items-center justify-between rounded-xl bg-white/5 border border-white/10 p-3.5 hover:bg-white/10 hover:border-saffron/40 transition-all"
+                      className="group flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200 p-3.5 hover:bg-amber-50/70 hover:border-amber-300 transition-all"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="flex size-10 items-center justify-center rounded-lg bg-amber-500/20 text-amber-300 group-hover:scale-110 transition-transform">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-amber-100 text-amber-700 group-hover:scale-110 transition-transform">
                           <ShieldCheck className="size-5" />
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-white group-hover:text-saffron transition-colors">
+                          <p className="text-xs font-bold text-slate-900 group-hover:text-navy transition-colors">
                             Subsidized Fee Structure
                           </p>
-                          <p className="text-[0.7rem] text-primary-foreground/60">HP Govt. zero-burden chart</p>
+                          <p className="text-[0.7rem] text-slate-500">HP Govt. zero-burden chart</p>
                         </div>
                       </div>
-                      <ChevronRight className="size-4 text-primary-foreground/50 group-hover:text-saffron" />
+                      <ChevronRight className="size-4 text-slate-400 group-hover:text-navy" />
                     </Link>
                   </div>
 
                   {/* Direct Contact Desk Footer inside Card */}
-                  <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[0.72rem] text-primary-foreground/75">
-                    <span>Helpline: <strong className="text-saffron">{content.phone || "+91 82193-98898"}</strong></span>
-                    <Link to="/contact" className="text-saffron hover:underline font-semibold flex items-center gap-1">
+                  <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-[0.72rem] text-slate-600">
+                    <span>Helpline: <strong className="text-navy">{content.phone || "+91 82193-98898"}</strong></span>
+                    <Link to="/contact" className="text-amber-700 hover:underline font-bold flex items-center gap-1">
                       Desk Info <ExternalLink className="size-2.5" />
                     </Link>
                   </div>
@@ -501,24 +501,24 @@ function Index() {
       {/* ===== 2. INTEGRATED TICKER NOTIFICATION BAR ===== */}
       <NoticeTicker />
 
-      {/* ===== 3. MODERN BENTO STATS SECTION ===== */}
+      {/* ===== 3. MODERN BENTO STATS SECTION (Clean White Elevated Card) ===== */}
       <section className="relative z-10 -mt-6 mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 rounded-3xl bg-gradient-to-r from-navy-deep via-navy to-navy-deep p-6 sm:p-8 text-primary-foreground shadow-elevated border border-white/10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 rounded-3xl bg-white p-6 sm:p-8 text-slate-900 shadow-elevated border border-slate-200">
           {STATS.map((s, idx) => (
             <Reveal key={s.label} delay={idx * 80} variant="zoom">
-              <div className="flex flex-col items-center text-center p-3 sm:p-4 rounded-2xl hover:bg-white/5 transition-all">
-                <div className="mb-2.5 flex size-12 items-center justify-center rounded-xl bg-saffron/20 text-saffron ring-1 ring-saffron/40 shadow-inner">
+              <div className="flex flex-col items-center text-center p-3 sm:p-4 rounded-2xl hover:bg-slate-50 transition-all">
+                <div className="mb-2.5 flex size-12 items-center justify-center rounded-xl bg-amber-100 text-amber-800 ring-1 ring-amber-300 shadow-inner">
                   <s.icon className="size-6" />
                 </div>
-                <div className="font-display text-3xl sm:text-4xl font-extrabold text-saffron-light">
+                <div className="font-display text-3xl sm:text-4xl font-extrabold text-navy">
                   {s.isText ? (
                     <span>{s.value}</span>
                   ) : (
                     <AnimatedCounter end={s.number ?? 0} suffix={s.suffix} />
                   )}
                 </div>
-                <p className="mt-1 text-sm font-bold text-white">{s.label}</p>
-                <p className="text-[0.72rem] text-primary-foreground/60">{s.subtext}</p>
+                <p className="mt-1 text-sm font-bold text-slate-900">{s.label}</p>
+                <p className="text-[0.72rem] text-slate-500 font-medium">{s.subtext}</p>
               </div>
             </Reveal>
           ))}
@@ -735,11 +735,11 @@ function Index() {
         </div>
       </section>
 
-      {/* ===== 7. PRINCIPAL'S DESK SPOTLIGHT (EDITORIAL STYLE) ===== */}
-      <section className="py-20 bg-gradient-to-b from-navy-deep via-navy to-navy-deep text-primary-foreground">
+      {/* ===== 7. PRINCIPAL'S DESK SPOTLIGHT (EDITORIAL STYLE - LIGHT THEME) ===== */}
+      <section className="py-20 bg-gradient-to-br from-blue-50/60 via-slate-50 to-amber-50/30 text-slate-800 border-y border-slate-200">
         <div className="mx-auto max-w-7xl px-4">
           <Reveal variant="zoom">
-            <div className="overflow-hidden rounded-3xl border border-white/15 bg-white/5 backdrop-blur-md p-8 sm:p-12 shadow-2xl">
+            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/95 backdrop-blur-md p-8 sm:p-12 shadow-xl">
               <div className="grid lg:grid-cols-12 gap-10 items-center">
                 {/* Principal Photo & Signature Card */}
                 <div className="lg:col-span-4 flex flex-col items-center text-center">
@@ -748,32 +748,32 @@ function Index() {
                       <img
                         src={campus2}
                         alt={content.principalName}
-                        className="size-full rounded-full object-cover border-2 border-navy-deep"
+                        className="size-full rounded-full object-cover border-2 border-white"
                       />
                     </div>
-                    <span className="absolute bottom-4 right-2 size-8 rounded-full bg-saffron text-navy-deep flex items-center justify-center font-bold text-xs shadow-md border-2 border-navy-deep">
+                    <span className="absolute bottom-4 right-2 size-8 rounded-full bg-saffron text-navy-deep flex items-center justify-center font-bold text-xs shadow-md border-2 border-white">
                       <Award className="size-4" />
                     </span>
                   </div>
 
-                  <h3 className="font-display text-2xl font-bold text-white">{content.principalName}</h3>
-                  <p className="text-xs font-bold text-saffron mt-0.5">{content.principalRole}</p>
-                  <p className="text-[0.75rem] text-primary-foreground/75 mt-1">{content.principalQual}</p>
+                  <h3 className="font-display text-2xl font-bold text-navy">{content.principalName}</h3>
+                  <p className="text-xs font-bold text-amber-800 mt-0.5">{content.principalRole}</p>
+                  <p className="text-[0.75rem] text-slate-500 mt-1 font-medium">{content.principalQual}</p>
                   
-                  <span className="mt-3 rounded-full bg-white/10 px-3 py-1 text-[0.65rem] font-semibold text-primary-foreground/80 border border-white/15">
+                  <span className="mt-3 rounded-full bg-slate-100 px-3 py-1 text-[0.65rem] font-bold text-slate-700 border border-slate-200">
                     Govt. Sr. Sec. School Sangla, Kinnaur
                   </span>
                 </div>
 
                 {/* Principal's Inspiring Message */}
                 <div className="lg:col-span-8 space-y-4">
-                  <Quote className="size-10 text-saffron/70" />
+                  <Quote className="size-10 text-amber-500/80" />
                   
-                  <h4 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
+                  <h4 className="font-display text-2xl sm:text-3xl font-bold text-navy leading-tight">
                     "{content.principalQuote}"
                   </h4>
                   
-                  <p className="text-sm sm:text-base text-primary-foreground/85 leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
                     {content.principalMessage}
                   </p>
 
@@ -788,7 +788,7 @@ function Index() {
 
                     <Link
                       to="/academics/faculty"
-                      className="text-xs font-bold text-saffron-light hover:text-white underline underline-offset-4"
+                      className="text-xs font-bold text-navy hover:text-amber-700 underline underline-offset-4"
                     >
                       Meet Our Faculty Team →
                     </Link>
@@ -955,27 +955,27 @@ function Index() {
         </div>
       </section>
 
-      {/* ===== 11. FINAL HIGH-CONVERSION ADMISSIONS CTA ===== */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-r from-navy-deep via-navy to-navy-deep py-24 text-primary-foreground">
-        {/* Glowing background ambient lights */}
-        <div className="absolute -top-32 left-1/2 -z-10 -translate-x-1/2 size-[600px] rounded-full bg-saffron/15 blur-3xl pointer-events-none" />
+      {/* ===== 11. FINAL HIGH-CONVERSION ADMISSIONS CTA (LIGHT THEME) ===== */}
+      <section className="relative isolate overflow-hidden bg-gradient-to-r from-blue-50 via-indigo-50/70 to-amber-50/40 py-20 text-slate-900 border-t border-slate-200">
+        {/* Subtle background ambient lights */}
+        <div className="absolute -top-32 left-1/2 -z-10 -translate-x-1/2 size-[600px] rounded-full bg-amber-200/40 blur-3xl pointer-events-none" />
 
         <div className="mx-auto max-w-4xl px-4 text-center">
           <Reveal variant="down">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-saffron/20 border border-saffron/40 px-4 py-1 text-xs font-bold text-saffron-light">
-              <Sparkles className="size-3.5" />
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 border border-amber-300 px-4 py-1 text-xs font-bold text-amber-900 shadow-2xs">
+              <Sparkles className="size-3.5 text-amber-700" />
               {content.admissionSession || "Admissions Open 2026-27"}
             </span>
           </Reveal>
 
           <Reveal variant="up" delay={80}>
-            <h2 className="mt-4 font-display text-3xl font-black sm:text-5xl lg:text-6xl text-white tracking-tight">
+            <h2 className="mt-4 font-display text-3xl font-black sm:text-5xl lg:text-6xl text-navy tracking-tight">
               Enroll Your Child at {content.schoolShortName || content.schoolName}
             </h2>
           </Reveal>
 
           <Reveal variant="up" delay={140}>
-            <p className="mt-4 text-base sm:text-lg text-primary-foreground/85 max-w-2xl mx-auto leading-relaxed font-normal">
+            <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
               Admissions are open for Class 1 to 12. Give your child the foundation of quality government CBSE education, dedicated mentorship, and high career aspirations.
             </p>
           </Reveal>
@@ -990,7 +990,7 @@ function Index() {
               </Link>
               <Link
                 to="/contact"
-                className="rounded-xl border border-white/30 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20"
+                className="rounded-xl border border-navy/20 bg-white px-8 py-3.5 text-sm font-bold text-navy shadow-xs transition-all duration-300 hover:bg-slate-50 hover:border-navy/40"
               >
                 Contact School Admission Desk
               </Link>

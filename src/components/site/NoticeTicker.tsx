@@ -16,10 +16,10 @@ export function NoticeTicker() {
       ];
 
   return (
-    <div className="relative overflow-hidden border-b border-white/10 bg-[#050b14]/90 text-primary-foreground py-1 text-[11px]">
+    <div className="relative overflow-hidden border-b border-amber-200/80 bg-amber-50/90 text-slate-800 py-1.5 text-[11px]">
       <div className="mx-auto flex max-w-7xl items-center px-4">
         {/* Static Slim Badge */}
-        <div className="z-10 flex shrink-0 items-center gap-1 rounded-full bg-saffron px-2.5 py-0.5 font-bold text-navy-deep shadow-xs mr-3 text-[0.62rem]">
+        <div className="z-10 flex shrink-0 items-center gap-1 rounded-full bg-saffron px-2.5 py-0.5 font-bold text-navy-deep shadow-2xs mr-3 text-[0.62rem]">
           <span className="relative flex size-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-navy-deep opacity-75" />
             <span className="relative inline-flex size-1.5 rounded-full bg-navy-deep" />
@@ -33,19 +33,19 @@ export function NoticeTicker() {
           <div className="animate-marquee flex items-center gap-6 whitespace-nowrap">
             {[...items, ...items].map((item, idx) => (
               <div key={idx} className="flex items-center gap-1.5">
-                <span className="rounded bg-white/10 px-1.5 py-0.2 text-[0.62rem] font-semibold text-saffron-light">
+                <span className="rounded bg-amber-200/80 border border-amber-300 px-1.5 py-0.2 text-[0.62rem] font-bold text-amber-900">
                   {item.tag}
                 </span>
-                <span className="text-primary-foreground/80 font-normal">
+                <span className="text-slate-700 font-medium">
                   {item.text}
                 </span>
                 <Link
                   to={item.link || "/notice-board"}
-                  className="inline-flex items-center gap-0.5 text-[0.65rem] font-semibold text-saffron hover:underline ml-0.5"
+                  className="inline-flex items-center gap-0.5 text-[0.65rem] font-bold text-navy hover:text-amber-700 hover:underline ml-0.5"
                 >
                   View <ArrowRight className="size-2.5" />
                 </Link>
-                <span className="text-white/20 ml-3">•</span>
+                <span className="text-slate-300 ml-3">•</span>
               </div>
             ))}
           </div>

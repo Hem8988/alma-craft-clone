@@ -110,23 +110,23 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 transition-all duration-300 shadow-md">
-      {/* ===== 1. TOP UTILITY BAR (Slim & Informative) ===== */}
-      <div className="bg-[#091322] border-b border-white/10 text-primary-foreground/80 py-1.5 text-[11.5px] hidden sm:block">
+    <header className="sticky top-0 z-50 transition-all duration-300 shadow-xs">
+      {/* ===== 1. TOP UTILITY BAR (Slim & Informative - Light Scheme) ===== */}
+      <div className="bg-slate-100/95 border-b border-slate-200 text-slate-700 py-1.5 text-[11.5px] hidden sm:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4">
           {/* Left: Statutory Compliance Info */}
           <div className="flex items-center gap-2">
-            <span className="flex items-center gap-1 font-medium text-primary-foreground/90">
-              <ShieldCheck className="size-3.5 text-saffron" />
+            <span className="flex items-center gap-1 font-semibold text-slate-800">
+              <ShieldCheck className="size-3.5 text-amber-600" />
               <span>Govt. of Himachal Pradesh</span>
             </span>
-            <span className="text-white/30">•</span>
-            <span className="text-primary-foreground/75">
-              CBSE Affiliation No: <strong className="text-white">630121</strong>
+            <span className="text-slate-300">•</span>
+            <span className="text-slate-600">
+              CBSE Affiliation No: <strong className="text-slate-900 font-bold">630121</strong>
             </span>
-            <span className="text-white/30">•</span>
-            <span className="text-primary-foreground/75">
-              School Code: <strong className="text-white">44363</strong>
+            <span className="text-slate-300">•</span>
+            <span className="text-slate-600">
+              School Code: <strong className="text-slate-900 font-bold">44363</strong>
             </span>
           </div>
 
@@ -135,82 +135,82 @@ export function Header() {
             {content.phone && (
               <a
                 href={`tel:${content.phone.replace(/[^0-9+]/g, "")}`}
-                className="flex items-center gap-1 text-primary-foreground/80 hover:text-saffron transition-colors"
+                className="flex items-center gap-1 text-slate-700 hover:text-navy transition-colors font-medium"
                 title="School Contact Desk"
               >
-                <Phone className="size-3 text-saffron" />
-                <span className="font-semibold">{content.phone}</span>
+                <Phone className="size-3 text-amber-600" />
+                <span>{content.phone}</span>
               </a>
             )}
 
             {content.email && (
               <a
                 href={`mailto:${content.email}`}
-                className="hidden lg:flex items-center gap-1 text-primary-foreground/80 hover:text-saffron transition-colors"
+                className="hidden lg:flex items-center gap-1 text-slate-600 hover:text-navy transition-colors"
                 title="Official Email"
               >
-                <Mail className="size-3 text-saffron" />
+                <Mail className="size-3 text-amber-600" />
                 <span>{content.email}</span>
               </a>
             )}
 
-            <div className="h-3 w-px bg-white/20" />
+            <div className="h-3 w-px bg-slate-300" />
 
             <Link
               to="/portal"
-              className="flex items-center gap-1 text-primary-foreground/80 hover:text-white font-medium transition-colors"
+              className="flex items-center gap-1 text-slate-700 hover:text-navy font-semibold transition-colors"
             >
-              <User className="size-3 text-saffron" />
+              <User className="size-3 text-amber-600" />
               <span>{user ? "My Account" : "Student Portal"}</span>
             </Link>
 
             <Link
               to="/admin"
-              className="flex items-center gap-1 rounded bg-saffron/15 border border-saffron/30 px-2 py-0.5 text-[10.5px] font-bold text-saffron-light hover:bg-saffron hover:text-navy-deep transition-all"
+              className="flex items-center gap-1 rounded-md bg-amber-100/90 border border-amber-300/80 px-2 py-0.5 text-[10.5px] font-bold text-amber-900 hover:bg-amber-200 transition-all"
             >
-              <ShieldAlert className="size-3" />
+              <ShieldAlert className="size-3 text-amber-700" />
               <span>Admin CMS</span>
             </Link>
           </div>
         </div>
       </div>
 
-      {/* ===== 2. MAIN NAVIGATION BAR ===== */}
+      {/* ===== 2. MAIN NAVIGATION BAR (Light Frosted Glass) ===== */}
       <div
         className={`transition-all duration-300 ${
           scrolled
-            ? "bg-navy-deep/98 backdrop-blur-2xl py-2 shadow-2xl border-b border-white/15"
-            : "bg-navy-deep/92 backdrop-blur-xl py-2.5 sm:py-3 border-b border-white/10"
-        } text-primary-foreground`}
+            ? "bg-white/98 backdrop-blur-2xl py-2 shadow-md border-b border-slate-200"
+            : "bg-white/90 backdrop-blur-xl py-2.5 sm:py-3 border-b border-slate-200/80"
+        } text-slate-800`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4">
-          {/* Logo Brand with Strict No-Wrap */}
+          {/* Logo Brand */}
           <Link to="/" className="shrink-0">
             <SchoolLogo size="sm" />
           </Link>
 
-          {/* Desktop Navigation Links with Guaranteed Single-Line Fit */}
-          <nav className="hidden items-center gap-1 xl:gap-2 lg:flex">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden items-center gap-1 xl:gap-1.5 lg:flex">
             {NAV.map((item) => (
               <div key={item.label} className="group relative">
                 <Link
                   to={item.to}
-                  className="flex items-center gap-1.5 rounded-lg px-2.5 xl:px-3 py-2 text-[13px] font-semibold text-primary-foreground/90 transition-all duration-200 hover:bg-white/10 hover:text-white whitespace-nowrap"
+                  className="flex items-center gap-1.5 rounded-lg px-2.5 xl:px-3 py-2 text-[13px] font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-100 hover:text-navy whitespace-nowrap"
                   activeProps={{
                     className:
-                      "bg-white/12 text-saffron font-bold border border-saffron/40 backdrop-blur-md shadow-xs",
+                      "bg-blue-50/90 text-navy font-bold border border-blue-200/90 shadow-2xs",
                   }}
                   activeOptions={{ exact: item.to === "/" }}
                 >
                   <span className="whitespace-nowrap">{item.label}</span>
                   {item.children && (
-                    <ChevronDown className="size-3.5 text-saffron/80 transition-transform duration-200 group-hover:rotate-180 shrink-0" />
+                    <ChevronDown className="size-3.5 text-amber-600/90 transition-transform duration-200 group-hover:rotate-180 shrink-0" />
                   )}
                 </Link>
 
-                {/* Elegant Frosted Dropdown Menu */}
+                {/* Light Dropped Down Menu */}
                 {item.children && (
-                  <div className="invisible absolute left-0 top-full mt-1 w-72 translate-y-2 rounded-2xl border border-white/15 bg-navy-deep/95 p-2.5 opacity-0 shadow-2xl backdrop-blur-3xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 z-50">
+                  <div className="invisible absolute left-0 top-full mt-1 w-72 translate-y-2 rounded-2xl border border-slate-200 bg-white p-2.5 opacity-0 shadow-2xl backdrop-blur-3xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 z-50">
                     <div className="space-y-1">
                       {item.children.map((child) =>
                         child.isPdf ? (
@@ -219,19 +219,19 @@ export function Header() {
                             href={child.to}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group/child flex items-center justify-between rounded-xl px-3 py-2 transition-all hover:bg-white/10"
+                            className="group/child flex items-center justify-between rounded-xl px-3 py-2 transition-all hover:bg-slate-50"
                           >
                             <div className="flex-1 pr-2">
-                              <p className="text-xs font-bold text-white group-hover/child:text-saffron transition-colors">
+                              <p className="text-xs font-bold text-slate-900 group-hover/child:text-navy transition-colors">
                                 {child.label}
                               </p>
                               {child.desc && (
-                                <p className="text-[0.68rem] text-primary-foreground/60 group-hover/child:text-primary-foreground/80">
+                                <p className="text-[0.68rem] text-slate-500 group-hover/child:text-slate-700">
                                   {child.desc}
                                 </p>
                               )}
                             </div>
-                            <span className="rounded bg-saffron/20 border border-saffron/30 px-1.5 py-0.5 text-[8.5px] font-extrabold text-saffron uppercase tracking-wider shrink-0">
+                            <span className="rounded bg-amber-100 border border-amber-300 px-1.5 py-0.5 text-[8.5px] font-extrabold text-amber-900 uppercase tracking-wider shrink-0">
                               PDF
                             </span>
                           </a>
@@ -239,13 +239,13 @@ export function Header() {
                           <Link
                             key={child.to + child.label}
                             to={child.to}
-                            className="group/child block rounded-xl px-3 py-2 transition-all hover:bg-white/10"
+                            className="group/child block rounded-xl px-3 py-2 transition-all hover:bg-slate-50"
                           >
-                            <p className="text-xs font-bold text-white group-hover/child:text-saffron transition-colors">
+                            <p className="text-xs font-bold text-slate-900 group-hover/child:text-navy transition-colors">
                               {child.label}
                             </p>
                             {child.desc && (
-                              <p className="text-[0.68rem] text-primary-foreground/60 group-hover/child:text-primary-foreground/80">
+                              <p className="text-[0.68rem] text-slate-500 group-hover/child:text-slate-700">
                                 {child.desc}
                               </p>
                             )}
@@ -265,7 +265,7 @@ export function Header() {
               to="/admissions/form"
               className="shimmer-btn inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-saffron to-amber-500 px-4 py-2 text-xs font-black text-navy-deep shadow-gold transition-all duration-200 hover:scale-105 active:scale-95 whitespace-nowrap"
             >
-              <Sparkles className="size-3.5" />
+              <Sparkles className="size-3.5 text-navy-deep" />
               <span>Apply 2026-27</span>
             </Link>
           </div>
@@ -282,24 +282,24 @@ export function Header() {
               type="button"
               aria-label="Toggle navigation"
               onClick={() => setOpen((v) => !v)}
-              className="rounded-lg border border-white/15 bg-white/10 p-2 text-white backdrop-blur-md transition-colors hover:bg-white/20"
+              className="rounded-lg border border-slate-200 bg-slate-100 p-2 text-slate-800 backdrop-blur-md transition-colors hover:bg-slate-200"
             >
-              {open ? <X className="size-5 text-saffron" /> : <Menu className="size-5" />}
+              {open ? <X className="size-5 text-amber-600" /> : <Menu className="size-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Navigation Drawer (Clean Light) */}
         {open && (
-          <nav className="border-t border-white/10 bg-navy-deep/98 backdrop-blur-3xl px-4 py-4 lg:hidden animate-fade-in max-h-[80vh] overflow-y-auto">
+          <nav className="border-t border-slate-200 bg-white/98 backdrop-blur-3xl px-4 py-4 lg:hidden animate-fade-in max-h-[80vh] overflow-y-auto">
             <div className="space-y-2">
               {NAV.map((item) => (
-                <div key={item.label} className="rounded-xl border border-white/5 bg-white/[0.03] overflow-hidden">
+                <div key={item.label} className="rounded-xl border border-slate-200 bg-slate-50/60 overflow-hidden">
                   <div className="flex items-center justify-between px-3.5 py-2.5">
                     <Link
                       to={item.to}
                       onClick={() => setOpen(false)}
-                      className="block flex-1 text-sm font-bold text-white hover:text-saffron transition-colors"
+                      className="block flex-1 text-sm font-bold text-slate-900 hover:text-navy transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -310,7 +310,7 @@ export function Header() {
                         onClick={() =>
                           setExpanded((cur) => (cur === item.label ? null : item.label))
                         }
-                        className="rounded p-1 text-saffron hover:bg-white/10"
+                        className="rounded p-1 text-amber-600 hover:bg-slate-200/60"
                       >
                         <ChevronDown
                           className={`size-4 transition-transform duration-200 ${
@@ -322,7 +322,7 @@ export function Header() {
                   </div>
 
                   {item.children && expanded === item.label && (
-                    <div className="border-t border-white/5 bg-black/25 px-3 py-2 space-y-1">
+                    <div className="border-t border-slate-200 bg-slate-100/70 px-3 py-2 space-y-1">
                       {item.children.map((child) =>
                         child.isPdf ? (
                           <a
@@ -331,10 +331,10 @@ export function Header() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => setOpen(false)}
-                            className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs text-primary-foreground/80 hover:bg-white/10 hover:text-white"
+                            className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs text-slate-700 hover:bg-slate-200 hover:text-navy"
                           >
                             <span>{child.label}</span>
-                            <span className="rounded bg-saffron/20 border border-saffron/30 px-1.5 py-0.5 text-[8.5px] font-bold text-saffron uppercase">
+                            <span className="rounded bg-amber-200/80 border border-amber-300 px-1.5 py-0.5 text-[8.5px] font-bold text-amber-900 uppercase">
                               PDF
                             </span>
                           </a>
@@ -343,7 +343,7 @@ export function Header() {
                             key={child.to + child.label}
                             to={child.to}
                             onClick={() => setOpen(false)}
-                            className="block rounded-lg px-2.5 py-2 text-xs text-primary-foreground/80 hover:bg-white/10 hover:text-white"
+                            className="block rounded-lg px-2.5 py-2 text-xs text-slate-700 hover:bg-slate-200 hover:text-navy"
                           >
                             {child.label}
                           </Link>
@@ -355,31 +355,31 @@ export function Header() {
               ))}
 
               {/* Mobile Quick Desk Buttons */}
-              <div className="pt-3 border-t border-white/10 space-y-2">
+              <div className="pt-3 border-t border-slate-200 space-y-2">
                 <Link
                   to="/admin"
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-xl bg-saffron/15 border border-saffron/30 py-2.5 text-xs font-bold text-saffron"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-amber-100 border border-amber-300 py-2.5 text-xs font-bold text-amber-900 hover:bg-amber-200"
                 >
-                  <ShieldAlert className="size-4" />
+                  <ShieldAlert className="size-4 text-amber-700" />
                   <span>Admin CMS Login</span>
                 </Link>
 
                 <Link
                   to="/portal"
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-xl bg-white/10 py-2.5 text-xs font-semibold text-white"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 py-2.5 text-xs font-semibold text-slate-800"
                 >
-                  <User className="size-4 text-saffron" />
+                  <User className="size-4 text-amber-600" />
                   <span>Student & Parent Portal</span>
                 </Link>
 
                 {content.phone && (
                   <a
                     href={`tel:${content.phone.replace(/[^0-9+]/g, "")}`}
-                    className="flex items-center justify-center gap-2 rounded-xl bg-white/5 py-2 text-xs text-primary-foreground/75"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-slate-50 py-2 text-xs text-slate-600 border border-slate-200"
                   >
-                    <Phone className="size-3.5 text-saffron" />
+                    <Phone className="size-3.5 text-amber-600" />
                     <span>Call Desk: {content.phone}</span>
                   </a>
                 )}

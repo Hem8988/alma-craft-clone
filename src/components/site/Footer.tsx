@@ -25,14 +25,14 @@ export function Footer() {
   const { content } = useSiteContent();
 
   return (
-    <footer className="relative bg-navy-deep text-primary-foreground">
+    <footer className="relative bg-slate-50 border-t border-slate-200 text-slate-700">
       {/* Decorative Golden Ribbon */}
-      <div className="bg-gradient-to-r from-saffron via-amber-400 to-saffron py-2.5 text-center text-[0.72rem] font-black tracking-[0.2em] text-navy-deep shadow-md uppercase">
+      <div className="bg-gradient-to-r from-saffron via-amber-400 to-saffron py-2.5 text-center text-[0.72rem] font-black tracking-[0.2em] text-navy-deep shadow-xs uppercase">
         {content.schoolName} • COMMITTED TO EXCELLENCE IN EDUCATION
       </div>
 
-      <div className="border-b border-white/10 bg-black/30 py-2.5 text-center text-[0.68rem] font-semibold tracking-[0.2em] text-primary-foreground/75 flex items-center justify-center gap-2">
-        <ShieldCheck className="size-3.5 text-saffron" />
+      <div className="border-b border-slate-200 bg-slate-100 py-2.5 text-center text-[0.68rem] font-bold tracking-[0.15em] text-slate-700 flex items-center justify-center gap-2">
+        <ShieldCheck className="size-3.5 text-amber-600" />
         <span>DIRECTORATE OF HIGHER EDUCATION, GOVERNMENT OF HIMACHAL PRADESH</span>
       </div>
 
@@ -44,19 +44,19 @@ export function Footer() {
               <SchoolLogo size="lg" />
             </Link>
 
-            <p className="text-xs sm:text-sm text-primary-foreground/75 leading-relaxed pt-2">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-2">
               Empowering students in the heart of Kinnaur valley with CBSE-affiliated academic excellence, modern science laboratories, digital learning, and holistic character building.
             </p>
 
-            <div className="flex items-center gap-2 text-xs text-saffron-light bg-white/5 rounded-xl p-3 border border-white/10 backdrop-blur-sm">
-              <Award className="size-4 shrink-0 text-saffron" />
-              <span>Affiliated to CBSE, New Delhi • Co-Educational</span>
+            <div className="flex items-center gap-2 text-xs text-slate-800 bg-white rounded-xl p-3 border border-slate-200 shadow-2xs">
+              <Award className="size-4 shrink-0 text-amber-600" />
+              <span className="font-semibold">Affiliated to CBSE, New Delhi • Co-Educational</span>
             </div>
           </div>
 
           {/* Col 2: Quick Links */}
           <div>
-            <h3 className="font-display text-base font-bold text-saffron border-b border-white/10 pb-2">
+            <h3 className="font-display text-base font-bold text-navy border-b border-slate-200 pb-2">
               Quick Navigation
             </h3>
             <ul className="mt-4 space-y-2 text-sm">
@@ -64,9 +64,9 @@ export function Footer() {
                 <li key={l.to}>
                   <Link
                     to={l.to}
-                    className="group flex items-center gap-2 text-primary-foreground/75 hover:text-saffron-light transition-colors"
+                    className="group flex items-center gap-2 text-slate-600 hover:text-navy font-medium transition-colors"
                   >
-                    <span className="text-saffron/50 transition-transform group-hover:translate-x-1 group-hover:text-saffron">
+                    <span className="text-amber-500 transition-transform group-hover:translate-x-1 group-hover:text-amber-600">
                       ›
                     </span>
                     <span>{l.label}</span>
@@ -78,7 +78,7 @@ export function Footer() {
 
           {/* Col 3: Important Resources */}
           <div>
-            <h3 className="font-display text-base font-bold text-saffron border-b border-white/10 pb-2">
+            <h3 className="font-display text-base font-bold text-navy border-b border-slate-200 pb-2">
               School Disclosures
             </h3>
             <ul className="mt-4 space-y-2 text-sm">
@@ -86,9 +86,9 @@ export function Footer() {
                 <li key={l.to}>
                   <Link
                     to={l.to}
-                    className="group flex items-center gap-2 text-primary-foreground/75 hover:text-saffron-light transition-colors"
+                    className="group flex items-center gap-2 text-slate-600 hover:text-navy font-medium transition-colors"
                   >
-                    <span className="text-saffron/50 transition-transform group-hover:translate-x-1 group-hover:text-saffron">
+                    <span className="text-amber-500 transition-transform group-hover:translate-x-1 group-hover:text-amber-600">
                       ›
                     </span>
                     <span>{l.label}</span>
@@ -100,28 +100,28 @@ export function Footer() {
 
           {/* Col 4: Reach Us */}
           <div>
-            <h3 className="font-display text-base font-bold text-saffron border-b border-white/10 pb-2">
+            <h3 className="font-display text-base font-bold text-navy border-b border-slate-200 pb-2">
               School Office & Contact
             </h3>
-            <ul className="mt-4 space-y-3 text-sm text-primary-foreground/80">
+            <ul className="mt-4 space-y-3 text-sm text-slate-600">
               <li className="flex gap-3">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-saffron" />
+                <MapPin className="mt-0.5 size-4 shrink-0 text-amber-600" />
                 <span>{content.address}</span>
               </li>
               <li className="flex gap-3">
-                <Phone className="mt-0.5 size-4 shrink-0 text-saffron" />
-                <a href={`tel:${content.phone.replace(/[^0-9+]/g, "")}`} className="hover:text-saffron transition-colors">
+                <Phone className="mt-0.5 size-4 shrink-0 text-amber-600" />
+                <a href={`tel:${content.phone.replace(/[^0-9+]/g, "")}`} className="hover:text-navy font-medium transition-colors">
                   {content.phone}
                 </a>
               </li>
               <li className="flex gap-3">
-                <Mail className="mt-0.5 size-4 shrink-0 text-saffron" />
-                <a href={`mailto:${content.email}`} className="hover:text-saffron transition-colors">
+                <Mail className="mt-0.5 size-4 shrink-0 text-amber-600" />
+                <a href={`mailto:${content.email}`} className="hover:text-navy font-medium transition-colors">
                   {content.email}
                 </a>
               </li>
               <li className="flex gap-3">
-                <Clock className="mt-0.5 size-4 shrink-0 text-saffron" />
+                <Clock className="mt-0.5 size-4 shrink-0 text-amber-600" />
                 <span>{content.officeHours}</span>
               </li>
             </ul>
@@ -129,10 +129,10 @@ export function Footer() {
             <div className="mt-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-saffron hover:underline"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-navy hover:text-amber-700 hover:underline"
               >
                 <span>View Campus Location Map</span>
-                <ExternalLink className="size-3" />
+                <ExternalLink className="size-3 text-amber-600" />
               </Link>
             </div>
           </div>
@@ -140,20 +140,20 @@ export function Footer() {
       </div>
 
       {/* Bottom Copyright & Policy Links */}
-      <div className="border-t border-white/10 bg-black/40">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-primary-foreground/65 sm:flex-row">
+      <div className="border-t border-slate-200 bg-slate-100">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-slate-600 sm:flex-row">
           <p>© {new Date().getFullYear()} {content.schoolName}. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-6">
-            <Link to="/about/policies" className="hover:text-saffron transition-colors">
+            <Link to="/about/policies" className="hover:text-navy font-medium transition-colors">
               School Policies & Safety
             </Link>
-            <Link to="/school-info/mandatory-disclosure" className="hover:text-saffron transition-colors">
+            <Link to="/school-info/mandatory-disclosure" className="hover:text-navy font-medium transition-colors">
               CBSE Mandatory Disclosure
             </Link>
-            <Link to="/portal" className="hover:text-saffron transition-colors">
+            <Link to="/portal" className="hover:text-navy font-medium transition-colors">
               Student / Parent Portal
             </Link>
-            <Link to="/admin" className="text-saffron/80 hover:text-saffron font-semibold transition-colors">
+            <Link to="/admin" className="text-amber-800 hover:text-navy font-bold transition-colors">
               🔒 Admin CMS
             </Link>
           </div>

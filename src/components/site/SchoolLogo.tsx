@@ -49,14 +49,14 @@ export function SchoolLogo({ className = "", showText = true, size = "sm" }: Sch
       {showText && (
         <div className="leading-tight text-left">
           <div className="flex items-center gap-1.5">
-            <span className="font-display text-sm sm:text-base font-extrabold tracking-tight text-white group-hover:text-saffron-light transition-colors whitespace-nowrap">
+            <span className="font-display text-sm sm:text-base font-extrabold tracking-tight text-slate-900 group-hover:text-navy transition-colors whitespace-nowrap">
               {content.schoolShortName || content.schoolName}
             </span>
-            <span className="hidden sm:inline-block rounded bg-saffron/20 border border-saffron/30 px-1.5 py-0.2 text-[0.58rem] font-bold text-saffron-light">
+            <span className="hidden sm:inline-block rounded bg-amber-100 border border-amber-300 px-1.5 py-0.2 text-[0.58rem] font-bold text-amber-900">
               {content.stat3Value || "CBSE"}
             </span>
           </div>
-          <span className="block text-[0.62rem] font-semibold tracking-wider text-saffron/90 uppercase whitespace-nowrap">
+          <span className="block text-[0.62rem] font-semibold tracking-wider text-amber-700 uppercase whitespace-nowrap">
             {content.tagline || "Govt. Sr. Sec. School • Kinnaur"}
           </span>
         </div>

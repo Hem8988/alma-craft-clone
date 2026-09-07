@@ -65,13 +65,13 @@
   --font-display-family: "Playfair Display", Georgia, serif;
   --font-body-family: "Source Sans 3", system-ui, sans-serif;
 
-  /* Sophisticated Prestigious Institutional Palette */
+  /* Sophisticated Prestigious Institutional Palette - Light Theme */
   --background: hsl(215 30% 98%);
-  --foreground: hsl(222 47% 13%);
+  --foreground: hsl(222 47% 12%);
   --card: hsl(0 0% 100%);
-  --card-foreground: hsl(222 47% 13%);
+  --card-foreground: hsl(222 47% 12%);
   --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(222 47% 13%);
+  --popover-foreground: hsl(222 47% 12%);
   --primary: hsl(224 64% 24%);
   --primary-foreground: hsl(0 0% 100%);
   --secondary: hsl(38 92% 48%);
@@ -87,24 +87,24 @@
   --ring: hsl(224 64% 30%);
 
   /* Royal Himalayan Navy & Warm Heritage Gold */
-  --navy: hsl(224 60% 22%);
-  --navy-deep: hsl(224 68% 10%);
+  --navy: hsl(224 64% 24%);
+  --navy-deep: hsl(224 55% 18%);
   --navy-light: hsl(224 45% 36%);
   --saffron: hsl(38 92% 48%);
-  --saffron-light: hsl(42 96% 60%);
+  --saffron-light: hsl(42 96% 55%);
   --cream: hsl(38 35% 96%);
   --warm-gray: hsl(215 15% 58%);
 
   --hero-gradient: linear-gradient(
     135deg,
-    hsl(224 68% 10%) 0%,
-    hsl(224 60% 18%) 45%,
-    hsl(220 50% 26%) 100%
+    hsl(215 35% 97%) 0%,
+    hsl(215 30% 94%) 50%,
+    hsl(210 25% 98%) 100%
   );
-  --shadow-soft: 0 4px 20px -4px hsl(224 68% 10% / 0.06);
-  --shadow-elevated: 0 16px 36px -8px hsl(224 68% 10% / 0.12);
-  --shadow-gold: 0 8px 24px -4px hsl(38 92% 48% / 0.35);
-  --shadow-glow: 0 0 25px hsl(38 92% 48% / 0.22);
+  --shadow-soft: 0 4px 20px -4px hsl(224 68% 10% / 0.05);
+  --shadow-elevated: 0 16px 36px -8px hsl(224 68% 10% / 0.09);
+  --shadow-gold: 0 8px 24px -4px hsl(38 92% 48% / 0.28);
+  --shadow-glow: 0 0 25px hsl(38 92% 48% / 0.20);
 
   --sidebar: hsl(0 0% 98%);
   --sidebar-foreground: hsl(240 5.3% 26.1%);
