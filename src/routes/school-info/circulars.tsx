@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
-import { FileText } from "lucide-react";
+import { Reveal } from "@/components/site/Reveal";
+import { FileText, Sparkles } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 export const Route = createFileRoute("/school-info/circulars")({
   head: () => ({
@@ -26,70 +28,43 @@ export const Route = createFileRoute("/school-info/circulars")({
   component: CircularsPage,
 });
 
-const CIRCULARS = [
-  {
-    date: "15 Jul 2026",
-    title: "Half-Yearly Examination Schedule — Classes VI to XII",
-    ref: "GSSS/SGL/2026/12",
-  },
-  {
-    date: "02 Jul 2026",
-    title: "Parent-Teacher Meeting for Classes X and XII",
-    ref: "GSSS/SGL/2026/11",
-  },
-  {
-    date: "20 Jun 2026",
-    title: "Monsoon Uniform and Timings Advisory",
-    ref: "GSSS/SGL/2026/10",
-  },
-  {
-    date: "05 Jun 2026",
-    title: "Enrolment under Samagra Shiksha — Data Verification",
-    ref: "GSSS/SGL/2026/09",
-  },
-  {
-    date: "18 May 2026",
-    title: "Summer Vacation Homework Guidelines",
-    ref: "GSSS/SGL/2026/08",
-  },
-  {
-    date: "01 Apr 2026",
-    title: "Commencement of New Academic Session 2026–27",
-    ref: "GSSS/SGL/2026/07",
-  },
-];
-
 function CircularsPage() {
+  const { content } = useSiteContent();
+  const circulars = content.circularsList || [];
+
   return (
     <>
       <PageHero
-        title="Circulars"
-        subtitle="Official circulars and notifications from the school administration"
+        title="Official Circulars"
+        subtitle={`Official circulars, administrative advisories and notifications from ${content.schoolShortName || "GSSS Sangla"} administration.`}
+        badge="Official Notifications"
+        breadcrumb={[{ label: "School Info", to: "/school-info" }, { label: "Circulars" }]}
       />
-      <section className="mx-auto max-w-4xl px-4 py-16">
+      <section className="mx-auto max-w-4xl px-4 py-20 bg-background">
         <ul className="space-y-4">
-          {CIRCULARS.map((c) => (
-            <li
-              key={c.ref}
-              className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-soft transition-shadow hover:shadow-elevated"
-            >
-              <div className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <FileText className="size-5" />
-              </div>
-              <div className="flex-1">
-                <h2 className="font-display font-semibold text-foreground">{c.title}</h2>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Ref: {c.ref} · Issued on {c.date}
-                </p>
-              </div>
-              <span className="shrink-0 rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-                {c.date}
-              </span>
-            </li>
+          {circulars.map((c, idx) => (
+            <Reveal key={c.ref + idx} delay={idx * 60} variant="up">
+              <li
+                className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft transition-all hover:shadow-elevated hover:border-saffron/40"
+              >
+                <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-navy/10 text-navy">
+                  <FileText className="size-5 text-saffron" />
+                </div>
+                <div className="flex-1">
+                  <h2 className="font-display font-bold text-navy text-base">{c.title}</h2>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Ref: {c.ref} · Issued on {c.date}
+                  </p>
+                </div>
+                <span className="shrink-0 rounded-full bg-navy/5 px-3 py-1 text-xs font-semibold text-navy">
+                  {c.date}
+                </span>
+              </li>
+            </Reveal>
           ))}
         </ul>
         <p className="mt-8 text-center text-xs text-muted-foreground">
-          Certified copies of circulars are available at the school office during working hours.
+          Certified physical copies of all circulars are available at the school office ({content.phone || "+91 1786-XXXXXX"}) during working hours.
         </p>
       </section>
     </>

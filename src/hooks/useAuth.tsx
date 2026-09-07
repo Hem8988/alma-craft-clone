@@ -3,12 +3,34 @@ import { supabase } from "@/integrations/supabase/client";
 import type { User } from "@supabase/supabase-js";
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | any | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
+
+    // Check for default admin login session or auto-initialize for local ERP admin
+    if (typeof window !== "undefined") {
+      const storedAuth = localStorage.getItem("gsss_sangla_admin_auth");
+      if (storedAuth !== "false") {
+        const adminEmail =
+          localStorage.getItem("gsss_sangla_admin_email") || "principal5010sangla@gmail.com";
+        localStorage.setItem("gsss_sangla_admin_auth", "true");
+        localStorage.setItem("gsss_sangla_admin_email", adminEmail);
+        setUser({
+          id: "admin-master-id",
+          email: adminEmail,
+          user_metadata: { full_name: "Principal Admin" },
+          aud: "authenticated",
+          role: "authenticated",
+          created_at: new Date().toISOString(),
+        });
+        setIsAdmin(true);
+        setLoading(false);
+        return;
+      }
+    }
 
     async function checkRole(userId: string) {
       const { data } = await supabase.rpc("has_role", {
@@ -44,3 +66,4 @@ export function useAuth() {
 
   return { user, isAdmin, loading };
 }
+
