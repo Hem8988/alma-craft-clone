@@ -335,49 +335,77 @@ function Portal() {
                       </p>
                     </div>
 
-                    {/* Candidate Particulars Grid */}
-                    <div className="my-6 grid grid-cols-2 sm:grid-cols-4 gap-4 rounded-2xl bg-muted/50 p-4 border border-border text-xs">
-                      <div>
-                        <span className="text-muted-foreground block text-[10px] uppercase font-bold">Candidate Name</span>
-                        <strong className="text-navy text-sm">{searchedResult.studentName}</strong>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground block text-[10px] uppercase font-bold">Roll Number</span>
-                        <strong className="text-navy text-sm font-mono">{searchedResult.rollNo}</strong>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground block text-[10px] uppercase font-bold">Class & Stream</span>
-                        <strong className="text-navy">
-                          {searchedResult.className || (searchedResult as any).studentClass || "Class XII"}{" "}
-                          {searchedResult.stream ? `(${searchedResult.stream})` : ""}
-                        </strong>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground block text-[10px] uppercase font-bold">Father's Name</span>
-                        <strong className="text-navy">{searchedResult.fatherName || "N/A"}</strong>
-                      </div>
-                      {searchedResult.admissionNo && (
+                    {/* Candidate Particulars & Photo Grid */}
+                    <div className="my-6 rounded-2xl bg-muted/50 p-4 sm:p-5 border border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 flex-1 text-xs">
                         <div>
-                          <span className="text-muted-foreground block text-[10px] uppercase font-bold">Admission Number</span>
-                          <strong className="text-navy font-mono">{searchedResult.admissionNo}</strong>
+                          <span className="text-muted-foreground block text-[10px] uppercase font-bold">Candidate Name</span>
+                          <strong className="text-navy text-sm">{searchedResult.studentName}</strong>
                         </div>
-                      )}
-                      {searchedResult.dob && (
                         <div>
-                          <span className="text-muted-foreground block text-[10px] uppercase font-bold">Date of Birth</span>
-                          <strong className="text-navy">{searchedResult.dob}</strong>
+                          <span className="text-muted-foreground block text-[10px] uppercase font-bold">Roll Number</span>
+                          <strong className="text-navy text-sm font-mono">{searchedResult.rollNo}</strong>
                         </div>
-                      )}
-                      <div>
-                        <span className="text-muted-foreground block text-[10px] uppercase font-bold">School Board</span>
-                        <strong className="text-navy">CBSE, New Delhi</strong>
+                        <div>
+                          <span className="text-muted-foreground block text-[10px] uppercase font-bold">Class & Stream</span>
+                          <strong className="text-navy">
+                            {searchedResult.className || (searchedResult as any).studentClass || "Class XII"}{" "}
+                            {searchedResult.stream ? `(${searchedResult.stream})` : ""}
+                          </strong>
+                        </div>
+                        <div>
+                          <span className="text-muted-foreground block text-[10px] uppercase font-bold">Father's Name</span>
+                          <strong className="text-navy">{searchedResult.fatherName || "N/A"}</strong>
+                        </div>
+                        {searchedResult.admissionNo && (
+                          <div>
+                            <span className="text-muted-foreground block text-[10px] uppercase font-bold">Admission Number</span>
+                            <strong className="text-navy font-mono">{searchedResult.admissionNo}</strong>
+                          </div>
+                        )}
+                        {searchedResult.dob && (
+                          <div>
+                            <span className="text-muted-foreground block text-[10px] uppercase font-bold">Date of Birth</span>
+                            <strong className="text-navy">{searchedResult.dob}</strong>
+                          </div>
+                        )}
+                        <div>
+                          <span className="text-muted-foreground block text-[10px] uppercase font-bold">School Board</span>
+                          <strong className="text-navy">CBSE, New Delhi</strong>
+                        </div>
+                        <div>
+                          <span className="text-muted-foreground block text-[10px] uppercase font-bold">Verification Status</span>
+                          <span className="rounded bg-emerald-100 text-emerald-800 px-2 py-0.5 font-bold text-[10px]">
+                            Verified Electronic Record
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-muted-foreground block text-[10px] uppercase font-bold">Status</span>
-                        <span className="rounded bg-emerald-100 text-emerald-800 px-2 py-0.5 font-bold text-[10px]">
-                          Verified
-                        </span>
-                      </div>
+
+                      {/* Official Candidate Passport Photo Frame */}
+                      {(() => {
+                        const matchedStudent = (content.studentsList || []).find(
+                          (s) => s.rollNo === searchedResult.rollNo || s.id === searchedResult.studentId
+                        );
+                        const photo = (searchedResult as any).studentPhotoUrl || matchedStudent?.photoUrl;
+                        return (
+                          <div className="shrink-0 flex flex-col items-center justify-center p-2 rounded-2xl bg-card border-2 border-dashed border-navy/20 text-center">
+                            {photo ? (
+                              <img
+                                src={photo}
+                                alt={searchedResult.studentName}
+                                className="size-20 sm:size-24 rounded-xl object-cover border border-navy/30 shadow-xs"
+                              />
+                            ) : (
+                              <div className="size-20 sm:size-24 rounded-xl bg-navy/10 flex items-center justify-center text-navy font-bold text-xs border border-navy/20">
+                                {searchedResult.studentName.slice(0, 2).toUpperCase()}
+                              </div>
+                            )}
+                            <span className="mt-1 text-[9px] font-bold text-navy/70 uppercase tracking-tighter">
+                              Candidate Photo
+                            </span>
+                          </div>
+                        );
+                      })()}
                     </div>
 
                     {/* Subject Marks Table */}
@@ -516,9 +544,17 @@ function Portal() {
                 <div className="space-y-6">
                   <div className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-soft flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
-                      <div className="flex size-16 items-center justify-center rounded-2xl bg-navy text-primary-foreground font-display text-2xl font-bold">
-                        {(loggedInStudent.name || "ST").slice(0, 2).toUpperCase()}
-                      </div>
+                      {loggedInStudent.photoUrl ? (
+                        <img
+                          src={loggedInStudent.photoUrl}
+                          alt={loggedInStudent.name}
+                          className="size-16 rounded-2xl object-cover border-2 border-saffron shadow-md"
+                        />
+                      ) : (
+                        <div className="flex size-16 items-center justify-center rounded-2xl bg-navy text-primary-foreground font-display text-2xl font-bold">
+                          {(loggedInStudent.name || "ST").slice(0, 2).toUpperCase()}
+                        </div>
+                      )}
                       <div>
                         <div className="flex items-center gap-2">
                           <h2 className="font-display text-2xl font-bold text-navy">{loggedInStudent.name}</h2>

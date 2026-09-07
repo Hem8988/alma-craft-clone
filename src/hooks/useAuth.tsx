@@ -10,14 +10,12 @@ export function useAuth() {
   useEffect(() => {
     let active = true;
 
-    // Check for default admin login session or auto-initialize for local ERP admin
+    // Check for explicit admin login session
     if (typeof window !== "undefined") {
       const storedAuth = localStorage.getItem("gsss_sangla_admin_auth");
-      if (storedAuth !== "false") {
+      if (storedAuth === "true") {
         const adminEmail =
           localStorage.getItem("gsss_sangla_admin_email") || "principal5010sangla@gmail.com";
-        localStorage.setItem("gsss_sangla_admin_auth", "true");
-        localStorage.setItem("gsss_sangla_admin_email", adminEmail);
         setUser({
           id: "admin-master-id",
           email: adminEmail,

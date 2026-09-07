@@ -128,14 +128,19 @@ export interface StudentRecord {
   fatherName: string;
   motherName?: string;
   dob?: string;
-  studentClass: string;
+  studentClass?: string;
+  className?: string;
   stream?: string;
+  section?: string;
   phone?: string;
   email?: string;
   address?: string;
-  gender?: "Male" | "Female" | "Other";
-  status: "Active" | "Alumni" | "Transferred";
+  gender?: "Male" | "Female" | "Other" | string;
+  status: "Active" | "Alumni" | "Transferred" | "Inactive" | "Graduated" | string;
   attendancePercentage?: number;
+  attendancePercent?: number;
+  academicYear?: string;
+  photoUrl?: string;
 }
 
 export interface ExamSubjectScore {
@@ -152,23 +157,27 @@ export interface StudentResultRecord {
   studentId: string;
   rollNo: string;
   studentName: string;
-  studentClass: string;
+  studentClass?: string;
+  className?: string;
   stream?: string;
   fatherName?: string;
   motherName?: string;
   dob?: string;
   admissionNo?: string;
+  studentPhotoUrl?: string;
   examName: string;
-  academicSession: string;
+  academicSession?: string;
+  academicYear?: string;
   issueDate: string;
-  scores: ExamSubjectScore[];
-  totalMarksObtained: number;
-  totalMaxMarks: number;
-  percentage: number;
-  overallGrade: string;
-  resultStatus: "Passed with Distinction" | "Passed (First Division)" | "Passed (Second Division)" | "Passed" | "Compartment" | "Needs Improvement";
+  scores?: ExamSubjectScore[];
+  subjectScores?: any[];
+  totalMarksObtained?: number;
+  totalMaxMarks?: number;
+  percentage?: number;
+  overallGrade?: string;
+  resultStatus?: "Passed with Distinction" | "Passed (First Division)" | "Passed (Second Division)" | "Passed" | "Compartment" | "Needs Improvement" | string;
   rank?: string;
-  teacherRemarks: string;
+  teacherRemarks?: string;
 }
 
 export interface SiteContent {

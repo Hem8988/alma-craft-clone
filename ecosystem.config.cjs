@@ -1,4 +1,4 @@
-// pm2 process config for the "gssssangla" site.
+// PM2 process config for the "gssssangla" site.
 // Run the app that nitro's node-server build produces (.output/server/index.mjs).
 // Start/reload with:  pm2 start ecosystem.config.cjs   |   pm2 reload gssssangla
 const path = require("node:path");
@@ -15,9 +15,10 @@ module.exports = {
       max_memory_restart: "500M",
       env: {
         NODE_ENV: "production",
-        // App listens here; nginx for the domain reverse-proxies to this.
         HOST: "127.0.0.1",
         PORT: 3080,
+        NITRO_PORT: 3080,
+        NITRO_HOST: "127.0.0.1",
       },
     },
   ],
