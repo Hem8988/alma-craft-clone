@@ -4894,6 +4894,16 @@ function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
+  // Client-side authentication gate state
+  const [isClientAuthenticated, setIsClientAuthenticated] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const auth = localStorage.getItem("gsss_sangla_admin_auth");
+      setIsClientAuthenticated(auth === "true");
+    }
+  }, []);
+
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPass, setAdminPass] = useState("");
   const [authBusy, setAuthBusy] = useState(false);
@@ -4945,6 +4955,7 @@ function AdminDashboard() {
       setAuthBusy(true);
       localStorage.setItem("gsss_sangla_admin_auth", "true");
       localStorage.setItem("gsss_sangla_admin_email", adminEmail.trim());
+      setIsClientAuthenticated(true);
       toast.success("Authentication successful! Loading ERP suite...");
       setTimeout(() => {
         window.location.reload();
@@ -4954,7 +4965,7 @@ function AdminDashboard() {
     }
   };
 
-  if (loading) {
+  if (isClientAuthenticated === null) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#07111e]">
         <div className="text-center space-y-3">
@@ -4965,7 +4976,7 @@ function AdminDashboard() {
     );
   }
 
-  if (!isAdmin) {
+  if (!isClientAuthenticated && !isAdmin) {
     return (
       <section className="relative min-h-screen bg-gradient-to-br from-[#060e1a] via-[#091527] to-[#040810] py-16 px-4 flex items-center justify-center overflow-hidden">
         {/* Decorative background glow */}

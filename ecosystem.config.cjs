@@ -19,6 +19,12 @@ module.exports = {
         PORT: 3080,
         NITRO_PORT: 3080,
         NITRO_HOST: "127.0.0.1",
+        // PostgreSQL Database Configuration
+        PGHOST: "127.0.0.1",
+        PGPORT: 5432,
+        PGDATABASE: "gsss_db",
+        PGUSER: "postgres",
+        PGPASSWORD: "Latahemsingh123@",
       },
     },
   ],
