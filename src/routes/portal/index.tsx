@@ -114,7 +114,7 @@ function Portal() {
                 <UserRound className="size-8 text-navy" />
               </div>
               <h2 className="mt-4 font-display text-2xl font-bold text-navy">
-                Welcome{user.user_metadata?.full_name ? `, ${user.user_metadata.full_name}` : ""}!
+                Welcome{user.user_metadata?.["full_name"] ? `, ${user.user_metadata["full_name"]}` : ""}!
               </h2>
               <p className="mt-1 text-sm text-muted-foreground">{user.email}</p>
 
