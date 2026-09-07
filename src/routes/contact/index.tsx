@@ -3,6 +3,7 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { PageHero } from "@/components/site/PageHero";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/contact/")({
   head: () => ({
@@ -74,14 +75,25 @@ function Contact() {
           </div>
 
           <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
+              const form = e.currentTarget;
+              const fd = new FormData(form);
               setSending(true);
-              setTimeout(() => {
-                setSending(false);
-                (e.target as HTMLFormElement).reset();
-                toast.success("Message sent. We'll get back to you shortly.");
-              }, 600);
+              const { error } = await supabase.from("contact_messages").insert({
+                name: String(fd.get("name") ?? "").trim(),
+                email: String(fd.get("email") ?? "").trim(),
+                phone: String(fd.get("phone") ?? "").trim() || null,
+                subject: String(fd.get("subject") ?? "").trim() || null,
+                message: String(fd.get("message") ?? "").trim(),
+              });
+              setSending(false);
+              if (error) {
+                toast.error("Message could not be sent. Please try again.");
+                return;
+              }
+              form.reset();
+              toast.success("Message sent. We'll get back to you shortly.");
             }}
             className="rounded-xl border border-border bg-card p-6 shadow-soft"
           >

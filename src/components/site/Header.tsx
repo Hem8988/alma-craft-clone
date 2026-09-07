@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ChevronDown, Mail, Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/school-logo.png";
+import { useAuth } from "@/hooks/useAuth";
 
 type NavItem = {
   label: string;
@@ -51,6 +52,7 @@ const NAV: NavItem[] = [
     children: [
       { label: "Photo Gallery", to: "/gallery" },
       { label: "News & Events", to: "/news" },
+      { label: "Events Calendar", to: "/events" },
     ],
   },
   { label: "Contact Us", to: "/contact" },
@@ -59,6 +61,7 @@ const NAV: NavItem[] = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const { user, isAdmin } = useAuth();
 
   return (
     <header className="sticky top-0 z-50">
@@ -76,11 +79,13 @@ export function Header() {
             </a>
           </div>
           <div className="flex items-center gap-5">
+            {isAdmin && (
+              <Link to="/admin" className="font-semibold text-saffron-light hover:text-saffron">
+                Admin Panel
+              </Link>
+            )}
             <Link to="/portal" className="hover:text-saffron-light">
-              Student Portal
-            </Link>
-            <Link to="/portal" className="hover:text-saffron-light">
-              Parent Portal
+              {user ? "My Account" : "Student / Parent Portal"}
             </Link>
           </div>
         </div>

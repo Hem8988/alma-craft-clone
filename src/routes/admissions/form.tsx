@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { PageHero } from "@/components/site/PageHero";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admissions/form")({
   head: () => ({
@@ -70,14 +71,31 @@ function AdmissionForm() {
 
       <section className="py-16">
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
+            const form = e.currentTarget;
+            const fd = new FormData(form);
             setSubmitting(true);
-            setTimeout(() => {
-              setSubmitting(false);
-              (e.target as HTMLFormElement).reset();
-              toast.success("Admission enquiry submitted. Our office will contact you soon.");
-            }, 600);
+            const { error } = await supabase.from("admission_enquiries").insert({
+              student_name: String(fd.get("name") ?? "").trim(),
+              dob: String(fd.get("dob") ?? ""),
+              gender: String(fd.get("gender") ?? "") || null,
+              class_applying: String(fd.get("class") ?? ""),
+              previous_school: String(fd.get("prevSchool") ?? "").trim() || null,
+              category: String(fd.get("category") ?? "") || null,
+              father_name: String(fd.get("father") ?? "").trim(),
+              mother_name: String(fd.get("mother") ?? "").trim(),
+              phone: String(fd.get("phone") ?? "").trim(),
+              email: String(fd.get("email") ?? "").trim() || null,
+              address: String(fd.get("address") ?? "").trim(),
+            });
+            setSubmitting(false);
+            if (error) {
+              toast.error("Submission failed. Please try again or contact the school office.");
+              return;
+            }
+            form.reset();
+            toast.success("Admission enquiry submitted. Our office will contact you soon.");
           }}
           className="mx-auto max-w-3xl rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8"
         >
