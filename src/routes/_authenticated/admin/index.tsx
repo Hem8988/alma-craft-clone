@@ -78,7 +78,7 @@ const CONTENT_CONFIG = {
 type ContentKey = keyof typeof CONTENT_CONFIG;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Row = Record<string, any>;
+type Row = any;
 
 function ContentManager({ kind }: { kind: ContentKey }) {
   const cfg = CONTENT_CONFIG[kind];
