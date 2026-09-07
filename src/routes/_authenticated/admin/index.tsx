@@ -155,7 +155,7 @@ function ContentManager({ kind }: { kind: ContentKey }) {
           onSubmit={handleAdd}
           className="mt-4 grid gap-4 rounded-xl border border-border bg-muted/40 p-5 sm:grid-cols-2"
         >
-          {cfg.fields.map((f) => (
+          {cfg.fields.map((f: any) => (
             <label key={f.name} className={`block text-sm font-medium ${f.textarea ? "sm:col-span-2" : ""}`}>
               {f.label}
               {"required" in f && f.required ? " *" : ""}
