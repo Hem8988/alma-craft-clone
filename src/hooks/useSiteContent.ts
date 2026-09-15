@@ -191,14 +191,23 @@ export interface SiteContent {
   tagline: string;
   estdYear: string;
   affiliationCode: string;
+  cbseAffiliationNo: string;
+  schoolCode: string;
   logoUrl?: string;
 
   // Contact Info
   phone: string;
   email: string;
+  contactPhone: string;
   officeHours: string;
   address: string;
   mapEmbedUrl: string;
+
+  // Quick stats
+  studentsEnrolled: number;
+  qualifiedFaculty: number;
+  boardAffiliation: string;
+  passPercentage: number;
 
   // Hero Section
   heroTitle: string;
@@ -318,14 +327,23 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
   tagline: "EXCELLENCE IN EDUCATION • KINNAUR",
   estdYear: "1952",
   affiliationCode: "CBSE Affiliation No: 620269",
+  cbseAffiliationNo: "620269",
+  schoolCode: "44363",
   logoUrl: "",
 
   // Contact Info
   phone: "+91 82193-98898",
+  contactPhone: "+91 82193-98898",
   email: "principal5010sangla@gmail.com",
   officeHours: "Monday to Saturday: 9:00 AM - 4:00 PM",
   address: "Sangla Valley, Kinnaur District, Himachal Pradesh - 172106",
   mapEmbedUrl: "https://www.openstreetmap.org/export/embed.html?bbox=78.24%2C31.39%2C78.32%2C31.45&layer=mapnik&marker=31.4234%2C78.2664",
+
+  // Quick stats
+  studentsEnrolled: 1000,
+  qualifiedFaculty: 28,
+  boardAffiliation: "CBSE",
+  passPercentage: 100,
 
   // Hero Section
   heroTitle: "Nurturing Minds in the",
