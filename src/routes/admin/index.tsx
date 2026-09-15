@@ -194,6 +194,7 @@ function SiteContentEditor() {
   const handleFacultyChange = (index: number, field: keyof FacultyMember, value: string) => {
     setFormState((prev) => {
       const list = [...(prev.facultyList || [])];
+      if (!list[index]) return prev;
       list[index] = { ...list[index], [field]: value };
       return {
         ...prev,
@@ -2398,6 +2399,7 @@ function StudentManager({ onSelectStudentForResult }: { onSelectStudentForResult
 
       for (let r = 1; r < parsedRows.length; r++) {
         const row = parsedRows[r];
+        if (!row) continue;
         const rollNo = (row[rollIdx] || "").trim();
         const name = (row[nameIdx] || "").trim();
 
@@ -3411,10 +3413,10 @@ function ResultManager() {
         admissionNo: st.admissionNo,
         studentName: st.name,
         fatherName: st.fatherName,
-        motherName: st.motherName,
-        className: st.className,
-        stream: st.stream,
-        dob: st.dob,
+        motherName: st.motherName || "",
+        className: st.className || "",
+        stream: st.stream || "",
+        dob: st.dob || "",
       }));
     }
   };
@@ -3425,7 +3427,8 @@ function ResultManager() {
     field: keyof ExamSubjectScore,
     value: string | number
   ) => {
-    const updatedScores = [...formData.subjectScores];
+    const updatedScores = [...(formData.subjectScores || [])];
+    if (!updatedScores[index]) return;
     const item = { ...updatedScores[index], [field]: value };
 
     // Auto calculate obtained & grade if theory or practical changes
@@ -3446,9 +3449,10 @@ function ResultManager() {
   };
 
   const handleAddSubject = (customName = "Elective Subject", customCode = "", maxMarks = 100, theory = 70, practical = 20) => {
+    const currentScores = formData.subjectScores || [];
     const calculatedTotal = theory + practical;
     const newSub: ExamSubjectScore = {
-      subjectCode: customCode || "00" + (formData.subjectScores.length + 1),
+      subjectCode: customCode || "00" + (currentScores.length + 1),
       subjectName: customName,
       maxMarks: maxMarks,
       marksTheory: theory,
@@ -3456,7 +3460,7 @@ function ResultManager() {
       marksObtained: calculatedTotal,
       grade: calcGrade(calculatedTotal, maxMarks),
     };
-    const updated = [...formData.subjectScores, newSub];
+    const updated = [...currentScores, newSub];
     recalculateSummary(updated);
   };
 
