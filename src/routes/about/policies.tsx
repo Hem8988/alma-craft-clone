@@ -40,9 +40,9 @@ function Policies() {
       <section className="py-20 bg-background">
         <div className="mx-auto max-w-4xl space-y-6 px-4">
           {policies.map((p, idx) => (
-            <Reveal key={p.title + idx} delay={idx * 60} variant="up">
+            <Reveal key={(p.title || "") + idx} delay={idx * 60} variant="up">
               <article className="rounded-2xl border border-border bg-card p-6 shadow-soft hover:shadow-elevated transition-all">
-                <h2 className="font-display text-xl font-bold text-navy">{p.title}</h2>
+                <h2 className="font-display text-xl font-bold text-navy">{p.title || "Policy"}</h2>
                 <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-muted-foreground leading-relaxed">
                   {(p.points || []).map((pt, i) => (
                     <li key={i}>{pt}</li>

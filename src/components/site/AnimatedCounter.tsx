@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 interface AnimatedCounterProps {
   end: number;
   duration?: number;
-  suffix?: string;
-  prefix?: string;
-  className?: string;
+  suffix?: string | undefined;
+  prefix?: string | undefined;
+  className?: string | undefined;
 }
 
 export function AnimatedCounter({

@@ -153,16 +153,18 @@ function RootComponent() {
   const isAdminRoute = location.pathname.startsWith("/admin");
 
   useEffect(() => {
+    let unsubscribe = () => {};
     try {
       const { data: sub } = supabase.auth.onAuthStateChange((event) => {
         if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
         router.invalidate();
         if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
       });
-      return () => sub?.subscription?.unsubscribe?.();
+      unsubscribe = () => sub?.subscription?.unsubscribe?.();
     } catch (e) {
       console.error("Auth listener error", e);
     }
+    return unsubscribe;
   }, [router, queryClient]);
 
   if (isAdminRoute) {

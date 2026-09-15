@@ -35,7 +35,7 @@ export interface TickerItem {
 }
 
 export interface FacultyMember {
-  id: string;
+  id?: string;
   name: string;
   role: string;
   dept: string;
@@ -105,7 +105,7 @@ export interface FeeRowItem {
 }
 
 export interface PolicyItem {
-  title: string;
+  title?: string;
   points: string[];
 }
 
@@ -116,7 +116,7 @@ export interface CircularItem {
 }
 
 export interface DisclosureSection {
-  title: string;
+  title?: string;
   rows: [string, string][];
 }
 
@@ -144,9 +144,12 @@ export interface StudentRecord {
 }
 
 export interface ExamSubjectScore {
+  subjectCode?: string;
   subjectName: string;
   marksObtained: number;
   maxMarks: number;
+  marksTheory?: number;
+  marksPractical?: number;
   theoryMarks?: number;
   practicalMarks?: number;
   grade?: string;
@@ -170,9 +173,10 @@ export interface StudentResultRecord {
   academicYear?: string;
   issueDate: string;
   scores?: ExamSubjectScore[];
-  subjectScores?: any[];
+  subjectScores?: ExamSubjectScore[];
   totalMarksObtained?: number;
   totalMaxMarks?: number;
+  remarks?: string;
   percentage?: number;
   overallGrade?: string;
   resultStatus?: "Passed with Distinction" | "Passed (First Division)" | "Passed (Second Division)" | "Passed" | "Compartment" | "Needs Improvement" | string;
@@ -187,14 +191,23 @@ export interface SiteContent {
   tagline: string;
   estdYear: string;
   affiliationCode: string;
+  cbseAffiliationNo: string;
+  schoolCode: string;
   logoUrl?: string;
 
   // Contact Info
   phone: string;
   email: string;
+  contactPhone: string;
   officeHours: string;
   address: string;
   mapEmbedUrl: string;
+
+  // Quick stats
+  studentsEnrolled: number;
+  qualifiedFaculty: number;
+  boardAffiliation: string;
+  passPercentage: number;
 
   // Hero Section
   heroTitle: string;
@@ -313,15 +326,24 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
   schoolShortName: "GSSS Sangla",
   tagline: "EXCELLENCE IN EDUCATION • KINNAUR",
   estdYear: "1952",
-  affiliationCode: "CBSE Affiliation No: 6200XX",
+  affiliationCode: "CBSE Affiliation No: 620269",
+  cbseAffiliationNo: "620269",
+  schoolCode: "44363",
   logoUrl: "",
 
   // Contact Info
   phone: "+91 82193-98898",
+  contactPhone: "+91 82193-98898",
   email: "principal5010sangla@gmail.com",
   officeHours: "Monday to Saturday: 9:00 AM - 4:00 PM",
   address: "Sangla Valley, Kinnaur District, Himachal Pradesh - 172106",
   mapEmbedUrl: "https://www.openstreetmap.org/export/embed.html?bbox=78.24%2C31.39%2C78.32%2C31.45&layer=mapnik&marker=31.4234%2C78.2664",
+
+  // Quick stats
+  studentsEnrolled: 1000,
+  qualifiedFaculty: 28,
+  boardAffiliation: "CBSE",
+  passPercentage: 100,
 
   // Hero Section
   heroTitle: "Nurturing Minds in the",

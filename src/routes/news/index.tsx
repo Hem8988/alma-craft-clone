@@ -118,7 +118,7 @@ function News() {
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <span className="absolute top-3 right-3 rounded-full bg-navy/80 backdrop-blur-md px-2.5 py-0.5 text-[0.65rem] font-bold text-primary-foreground">
-                        {n.tag || "Official"}
+                        Official
                       </span>
                     </div>
 

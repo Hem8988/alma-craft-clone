@@ -254,7 +254,7 @@ function Index() {
       isText: true,
       value: content.boardAffiliation || "CBSE",
       label: "Affiliated Board",
-      subtext: "Code: 630121 • New Delhi",
+      subtext: "Code: 620269 • New Delhi",
     },
     {
       icon: Trophy,
