@@ -850,7 +850,7 @@ function SiteContentEditor() {
                     </div>
                     <button
                       type="button"
-                      onClick={() => handleDeleteFaculty(fac.id, fac.name)}
+                      onClick={() => handleDeleteFaculty(fac.id || "", fac.name || "")}
                       className="inline-flex items-center gap-1 rounded-lg border border-destructive/20 bg-destructive/5 px-2 py-1 text-[0.68rem] font-semibold text-destructive hover:bg-destructive hover:text-destructive-foreground transition-all"
                     >
                       <Trash2 className="size-3" />
@@ -1600,6 +1600,7 @@ function SiteContentEditor() {
                         value={pt}
                         onChange={(e) => {
                           const updated = [...(formState.policiesList || [])];
+                          if (!updated[idx]) return;
                           const points = [...updated[idx].points];
                           points[ptIdx] = e.target.value;
                           updated[idx] = { ...updated[idx], points };
@@ -1708,25 +1709,27 @@ function SiteContentEditor() {
                       <div key={rIdx} className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                         <input
                           value={label}
-                          onChange={(e) => {
-                            const updated = [...(formState.disclosureSections || [])];
-                            const rows = [...updated[sIdx].rows];
-                            rows[rIdx] = [e.target.value, val];
-                            updated[sIdx] = { ...updated[sIdx], rows };
-                            setFormState({ ...formState, disclosureSections: updated });
-                          }}
+                        onChange={(e) => {
+                          const updated = [...(formState.disclosureSections || [])];
+                          if (!updated[sIdx]) return;
+                          const rows = [...updated[sIdx].rows];
+                          rows[rIdx] = [e.target.value, val];
+                          updated[sIdx] = { ...updated[sIdx], rows };
+                          setFormState({ ...formState, disclosureSections: updated });
+                        }}
                           className={inputCls}
                           placeholder="Label"
                         />
                         <input
                           value={val}
-                          onChange={(e) => {
-                            const updated = [...(formState.disclosureSections || [])];
-                            const rows = [...updated[sIdx].rows];
-                            rows[rIdx] = [label, e.target.value];
-                            updated[sIdx] = { ...updated[sIdx], rows };
-                            setFormState({ ...formState, disclosureSections: updated });
-                          }}
+                        onChange={(e) => {
+                          const updated = [...(formState.disclosureSections || [])];
+                          if (!updated[sIdx]) return;
+                          const rows = [...updated[sIdx].rows];
+                          rows[rIdx] = [label, e.target.value];
+                          updated[sIdx] = { ...updated[sIdx], rows };
+                          setFormState({ ...formState, disclosureSections: updated });
+                        }}
                           className={`${inputCls} sm:col-span-2`}
                           placeholder="Value"
                         />
@@ -2365,7 +2368,12 @@ function StudentManager({ onSelectStudentForResult }: { onSelectStudentForResult
       }
 
       // Map headers
-      const headers = parsedRows[0].map((h) => h.toLowerCase().replace(/[^a-z0-9]/g, ""));
+      const headerRow = parsedRows[0];
+      if (!headerRow) {
+        setImportErrors(["CSV file must contain a header row."]);
+        return;
+      }
+      const headers = headerRow.map((h) => h.toLowerCase().replace(/[^a-z0-9]/g, ""));
       const getIndex = (aliases: string[]) => {
         return headers.findIndex((h) => aliases.some((a) => h.includes(a)));
       };
@@ -3515,11 +3523,12 @@ function ResultManager() {
   };
 
   const handleRemoveSubject = (idx: number) => {
-    if (formData.subjectScores.length <= 1) {
+    const currentScores = formData.subjectScores || [];
+    if (currentScores.length <= 1) {
       toast.error("Marksheet must have at least one subject.");
       return;
     }
-    const updated = formData.subjectScores.filter((_, i) => i !== idx);
+    const updated = currentScores.filter((_, i) => i !== idx);
     recalculateSummary(updated);
   };
 
