@@ -122,7 +122,7 @@ export function Header() {
             </span>
             <span className="text-slate-300">•</span>
             <span className="text-slate-600">
-              CBSE Affiliation No: <strong className="text-slate-900 font-bold">630121</strong>
+              CBSE Affiliation No: <strong className="text-slate-900 font-bold">620269</strong>
             </span>
             <span className="text-slate-300">•</span>
             <span className="text-slate-600">

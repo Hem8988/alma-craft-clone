@@ -313,7 +313,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
   schoolShortName: "GSSS Sangla",
   tagline: "EXCELLENCE IN EDUCATION • KINNAUR",
   estdYear: "1952",
-  affiliationCode: "CBSE Affiliation No: 6200XX",
+  affiliationCode: "CBSE Affiliation No: 620269",
   logoUrl: "",
 
   // Contact Info

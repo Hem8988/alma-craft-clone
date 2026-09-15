@@ -4814,7 +4814,7 @@ function AdminOverview({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
             <div className="space-y-2.5 text-xs text-slate-600">
               <div className="flex justify-between">
                 <span className="text-slate-400">CBSE Affiliation:</span>
-                <span className="font-mono font-bold text-slate-800">{content.cbseAffiliationNo || "630121"}</span>
+                <span className="font-mono font-bold text-slate-800">{content.cbseAffiliationNo || "620269"}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-400">School Code:</span>
