@@ -196,12 +196,12 @@ function MandatoryDisclosurePage() {
           </Reveal>
 
           {sections.map((section, idx) => (
-            <Reveal key={section.title + idx} delay={idx * 60} variant="up">
+            <Reveal key={(section.title || "") + idx} delay={idx * 60} variant="up">
               <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
                 <div className="flex items-center gap-2 bg-navy px-6 py-4 text-primary-foreground">
                   <FileCheck className="size-4 text-saffron" />
                   <h2 className="font-display text-base font-bold text-white">
-                    {section.title}
+                    {section.title || "Disclosure"}
                   </h2>
                 </div>
                 <div className="divide-y divide-border">

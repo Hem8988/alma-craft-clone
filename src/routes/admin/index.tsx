@@ -194,6 +194,7 @@ function SiteContentEditor() {
   const handleFacultyChange = (index: number, field: keyof FacultyMember, value: string) => {
     setFormState((prev) => {
       const list = [...(prev.facultyList || [])];
+      if (!list[index]) return prev;
       list[index] = { ...list[index], [field]: value };
       return {
         ...prev,
@@ -849,7 +850,7 @@ function SiteContentEditor() {
                     </div>
                     <button
                       type="button"
-                      onClick={() => handleDeleteFaculty(fac.id, fac.name)}
+                      onClick={() => handleDeleteFaculty(fac.id || "", fac.name || "")}
                       className="inline-flex items-center gap-1 rounded-lg border border-destructive/20 bg-destructive/5 px-2 py-1 text-[0.68rem] font-semibold text-destructive hover:bg-destructive hover:text-destructive-foreground transition-all"
                     >
                       <Trash2 className="size-3" />
@@ -1599,6 +1600,7 @@ function SiteContentEditor() {
                         value={pt}
                         onChange={(e) => {
                           const updated = [...(formState.policiesList || [])];
+                          if (!updated[idx]) return;
                           const points = [...updated[idx].points];
                           points[ptIdx] = e.target.value;
                           updated[idx] = { ...updated[idx], points };
@@ -1707,25 +1709,27 @@ function SiteContentEditor() {
                       <div key={rIdx} className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                         <input
                           value={label}
-                          onChange={(e) => {
-                            const updated = [...(formState.disclosureSections || [])];
-                            const rows = [...updated[sIdx].rows];
-                            rows[rIdx] = [e.target.value, val];
-                            updated[sIdx] = { ...updated[sIdx], rows };
-                            setFormState({ ...formState, disclosureSections: updated });
-                          }}
+                        onChange={(e) => {
+                          const updated = [...(formState.disclosureSections || [])];
+                          if (!updated[sIdx]) return;
+                          const rows = [...updated[sIdx].rows];
+                          rows[rIdx] = [e.target.value, val];
+                          updated[sIdx] = { ...updated[sIdx], rows };
+                          setFormState({ ...formState, disclosureSections: updated });
+                        }}
                           className={inputCls}
                           placeholder="Label"
                         />
                         <input
                           value={val}
-                          onChange={(e) => {
-                            const updated = [...(formState.disclosureSections || [])];
-                            const rows = [...updated[sIdx].rows];
-                            rows[rIdx] = [label, e.target.value];
-                            updated[sIdx] = { ...updated[sIdx], rows };
-                            setFormState({ ...formState, disclosureSections: updated });
-                          }}
+                        onChange={(e) => {
+                          const updated = [...(formState.disclosureSections || [])];
+                          if (!updated[sIdx]) return;
+                          const rows = [...updated[sIdx].rows];
+                          rows[rIdx] = [label, e.target.value];
+                          updated[sIdx] = { ...updated[sIdx], rows };
+                          setFormState({ ...formState, disclosureSections: updated });
+                        }}
                           className={`${inputCls} sm:col-span-2`}
                           placeholder="Value"
                         />
@@ -2364,7 +2368,12 @@ function StudentManager({ onSelectStudentForResult }: { onSelectStudentForResult
       }
 
       // Map headers
-      const headers = parsedRows[0].map((h) => h.toLowerCase().replace(/[^a-z0-9]/g, ""));
+      const headerRow = parsedRows[0];
+      if (!headerRow) {
+        setImportErrors(["CSV file must contain a header row."]);
+        return;
+      }
+      const headers = headerRow.map((h) => h.toLowerCase().replace(/[^a-z0-9]/g, ""));
       const getIndex = (aliases: string[]) => {
         return headers.findIndex((h) => aliases.some((a) => h.includes(a)));
       };
@@ -2398,6 +2407,7 @@ function StudentManager({ onSelectStudentForResult }: { onSelectStudentForResult
 
       for (let r = 1; r < parsedRows.length; r++) {
         const row = parsedRows[r];
+        if (!row) continue;
         const rollNo = (row[rollIdx] || "").trim();
         const name = (row[nameIdx] || "").trim();
 
@@ -3411,10 +3421,10 @@ function ResultManager() {
         admissionNo: st.admissionNo,
         studentName: st.name,
         fatherName: st.fatherName,
-        motherName: st.motherName,
-        className: st.className,
-        stream: st.stream,
-        dob: st.dob,
+        motherName: st.motherName || "",
+        className: st.className || "",
+        stream: st.stream || "",
+        dob: st.dob || "",
       }));
     }
   };
@@ -3425,7 +3435,8 @@ function ResultManager() {
     field: keyof ExamSubjectScore,
     value: string | number
   ) => {
-    const updatedScores = [...formData.subjectScores];
+    const updatedScores = [...(formData.subjectScores || [])];
+    if (!updatedScores[index]) return;
     const item = { ...updatedScores[index], [field]: value };
 
     // Auto calculate obtained & grade if theory or practical changes
@@ -3446,9 +3457,10 @@ function ResultManager() {
   };
 
   const handleAddSubject = (customName = "Elective Subject", customCode = "", maxMarks = 100, theory = 70, practical = 20) => {
+    const currentScores = formData.subjectScores || [];
     const calculatedTotal = theory + practical;
     const newSub: ExamSubjectScore = {
-      subjectCode: customCode || "00" + (formData.subjectScores.length + 1),
+      subjectCode: customCode || "00" + (currentScores.length + 1),
       subjectName: customName,
       maxMarks: maxMarks,
       marksTheory: theory,
@@ -3456,7 +3468,7 @@ function ResultManager() {
       marksObtained: calculatedTotal,
       grade: calcGrade(calculatedTotal, maxMarks),
     };
-    const updated = [...formData.subjectScores, newSub];
+    const updated = [...currentScores, newSub];
     recalculateSummary(updated);
   };
 
@@ -3511,11 +3523,12 @@ function ResultManager() {
   };
 
   const handleRemoveSubject = (idx: number) => {
-    if (formData.subjectScores.length <= 1) {
+    const currentScores = formData.subjectScores || [];
+    if (currentScores.length <= 1) {
       toast.error("Marksheet must have at least one subject.");
       return;
     }
-    const updated = formData.subjectScores.filter((_, i) => i !== idx);
+    const updated = currentScores.filter((_, i) => i !== idx);
     recalculateSummary(updated);
   };
 
@@ -4814,7 +4827,7 @@ function AdminOverview({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
             <div className="space-y-2.5 text-xs text-slate-600">
               <div className="flex justify-between">
                 <span className="text-slate-400">CBSE Affiliation:</span>
-                <span className="font-mono font-bold text-slate-800">{content.cbseAffiliationNo || "630121"}</span>
+                <span className="font-mono font-bold text-slate-800">{content.cbseAffiliationNo || "620269"}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-400">School Code:</span>
