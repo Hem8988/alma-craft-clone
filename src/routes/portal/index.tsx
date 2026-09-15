@@ -321,7 +321,7 @@ function Portal() {
                             {content.schoolName}
                           </h2>
                           <p className="text-xs font-bold text-saffron">
-                            Kinnaur District, Himachal Pradesh - 172106 • CBSE Affiliation No: 630121
+                            Kinnaur District, Himachal Pradesh - 172106 • CBSE Affiliation No: 620269
                           </p>
                         </div>
                       </div>
