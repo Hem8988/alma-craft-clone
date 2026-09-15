@@ -35,7 +35,7 @@ export interface TickerItem {
 }
 
 export interface FacultyMember {
-  id: string;
+  id?: string;
   name: string;
   role: string;
   dept: string;
@@ -105,7 +105,7 @@ export interface FeeRowItem {
 }
 
 export interface PolicyItem {
-  title: string;
+  title?: string;
   points: string[];
 }
 
@@ -116,7 +116,7 @@ export interface CircularItem {
 }
 
 export interface DisclosureSection {
-  title: string;
+  title?: string;
   rows: [string, string][];
 }
 
@@ -144,9 +144,12 @@ export interface StudentRecord {
 }
 
 export interface ExamSubjectScore {
+  subjectCode?: string;
   subjectName: string;
   marksObtained: number;
   maxMarks: number;
+  marksTheory?: number;
+  marksPractical?: number;
   theoryMarks?: number;
   practicalMarks?: number;
   grade?: string;
@@ -170,9 +173,10 @@ export interface StudentResultRecord {
   academicYear?: string;
   issueDate: string;
   scores?: ExamSubjectScore[];
-  subjectScores?: any[];
+  subjectScores?: ExamSubjectScore[];
   totalMarksObtained?: number;
   totalMaxMarks?: number;
+  remarks?: string;
   percentage?: number;
   overallGrade?: string;
   resultStatus?: "Passed with Distinction" | "Passed (First Division)" | "Passed (Second Division)" | "Passed" | "Compartment" | "Needs Improvement" | string;
